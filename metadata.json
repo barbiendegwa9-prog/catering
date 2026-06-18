@@ -1,0 +1,10 @@
+{
+  "name": "Ladha Gastronomy",
+  "description": "Premium professional catering services by Ladha Gastronomy, showcasing premium standard meals, beverages, and an interactive event booking calculator.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
