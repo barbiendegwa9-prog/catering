@@ -29,8 +29,8 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
           {/* Main Visual */}
           <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl bg-stone-900 border border-stone-800">
             <img 
-              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&auto=format&fit=crop&q=80" 
-              alt="Elite Chef plating food professionally" 
+              src="https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?w=800&auto=format&fit=crop&q=80" 
+              alt="Happy guests enjoying fresh Kenyan food at a social gathering" 
               className="w-full h-full object-cover filter brightness-[0.82] hover:scale-105 transition-transform duration-500"
               referrerPolicy="no-referrer"
             />
@@ -101,7 +101,7 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
             
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">Our Mission</h3>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
-              We pledge to provide healthy, gourmet culinary creations customized for all event checklists, deploying rigid FDA-standard food prep sanitizations while remaining transparently priced.
+              We pledge to provide trusted healthy, clean, and organic culinary creations customized for all event checklists, deploying rigid KeBS and Ministry of Health clean food guidelines while remaining transparently priced.
             </p>
           </div>
 
@@ -140,7 +140,7 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
           <div id="chef-card-1" className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl text-center space-y-4 hover:border-emerald-500/20 transition-all">
             <div className="w-24 h-24 rounded-full bg-stone-900 border-2 border-emerald-500/30 overflow-hidden mx-auto">
               <img 
-                src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=300&auto=format&fit=crop&q=80" 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80" 
                 alt="Chef Julian Vane" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -159,7 +159,7 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
           <div id="chef-card-2" className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl text-center space-y-4 hover:border-emerald-500/20 transition-all">
             <div className="w-24 h-24 rounded-full bg-stone-900 border-2 border-emerald-500/30 overflow-hidden mx-auto">
               <img 
-                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&auto=format&fit=crop&q=80" 
+                src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop&q=80" 
                 alt="Chef Maria Gomez" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

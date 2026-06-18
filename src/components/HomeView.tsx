@@ -54,18 +54,18 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="inline-flex items-center gap-2 bg-emerald-700/10 border border-emerald-500/30 px-4 py-1.5 rounded-full text-emerald-400 text-xs tracking-wider uppercase font-mono">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Award-Winning Bespoke Culinary Services</span>
+            <span>Your Trusted Healthy Catering Partner</span>
           </div>
 
-          <h1 id="hero-headline" className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-            Exquisite Gastronomy for <br />
+          <h1 id="hero-headline" className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in">
+            Your Trusted Healthy Catering & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-emerald-500">
-              Life's Grandest Milestones
+              Clean, Nutrient-Rich Food
             </span>
           </h1>
 
-          <p id="hero-slogan" className="max-w-2xl mx-auto text-stone-300 text-base sm:text-xl font-light leading-relaxed">
-            From intimate corporate boardrooms to majestic wedding celebrations, we craft fine-dining catering experiences defined by uncompromising freshness, luxury, and absolute reliability.
+          <p id="hero-slogan" className="max-w-2xl mx-auto text-stone-300 text-base sm:text-lg font-light leading-relaxed">
+            Delivering the finest fresh, organic Kenyan delicacies prepared with elite hygienic controls. We craft exceptionally clean food to support your wellness lifestyle and inspire your guests at every milestone.
           </p>
 
           <div id="hero-actions" className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -258,7 +258,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
         </div>
 
         {/* Products Grid */}
-        <div id="products-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="products-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           <AnimatePresence mode="popLayout">
             {filteredMeals.map((meal) => {
               const countInCart = selectedItemsCount[meal.id] || 0;
@@ -271,10 +271,10 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-[#131517] border border-stone-800/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col group h-full"
+                  className="bg-[#131517] border border-stone-800/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all flex flex-col group h-full"
                 >
                   {/* Photo Staging */}
-                  <div className="relative h-56 sm:h-64 overflow-hidden bg-stone-900">
+                  <div className="relative h-44 sm:h-48 overflow-hidden bg-stone-900">
                     <img
                       src={meal.imageUrl}
                       alt={meal.name}
@@ -287,13 +287,13 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/40 via-transparent to-transparent" />
 
                     {/* Left top features badges */}
-                    <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                    <div className="absolute top-3 left-3 flex flex-col gap-1">
                       {meal.popular && (
-                        <span className="bg-emerald-600 text-white text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                        <span className="bg-emerald-600 text-white text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
                           Popular Choice
                         </span>
                       )}
-                      <span className="bg-stone-900/80 backdrop-blur-sm text-stone-200 text-[9px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                      <span className="bg-stone-900/80 backdrop-blur-sm text-stone-200 text-[8px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">
                         {meal.category === 'meal' && 'ENTRÉE'}
                         {meal.category === 'snack' && 'HORS D’OEUVRE'}
                         {meal.category === 'beverage' && 'ELIXIR'}
@@ -302,35 +302,35 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     </div>
 
                     {/* Price tag bottom-right overlay */}
-                    <div className="absolute bottom-4 right-4 bg-stone-900/95 backdrop-blur-sm shadow-md px-3 py-1.5 rounded-xl border border-stone-800">
-                      <span className="text-xs text-stone-400 font-mono">From </span>
-                      <span className="text-white font-mono font-bold text-base">
+                    <div className="absolute bottom-3 right-3 bg-stone-900/95 backdrop-blur-sm shadow-md px-2.5 py-1 rounded-lg border border-stone-800 text-[11px]">
+                      <span className="text-[10px] text-stone-400 font-mono">From </span>
+                      <span className="text-white font-mono font-bold">
                         Ksh {meal.price.toLocaleString()}
                       </span>
-                      <span className="text-[10px] text-stone-400 font-sans">
+                      <span className="text-[9px] text-stone-400 font-sans">
                         {meal.category === 'package' ? '/head' : '/person'}
                       </span>
                     </div>
                   </div>
 
                   {/* Core Attributes */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <h3 className="font-serif text-lg font-bold text-stone-100 group-hover:text-emerald-400 transition-colors">
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div className="space-y-1">
+                      <h3 className="font-serif text-base font-bold text-stone-100 group-hover:text-emerald-400 transition-colors">
                         {meal.name}
                       </h3>
-                      <p className="text-stone-400 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                      <p className="text-stone-400 text-slate-400 text-xs leading-relaxed line-clamp-3">
                         {meal.description}
                       </p>
                     </div>
 
-                    <div className="space-y-4 pt-3 border-t border-stone-800">
+                    <div className="space-y-3 pt-2.5 border-t border-stone-800">
                       {/* Dietary / Feature bullet list */}
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1">
                         {meal.features.map((feat, i) => (
                           <span 
                             key={i} 
-                            className="bg-stone-900 border border-stone-800 text-stone-300 text-[10px] px-2 py-0.5 rounded-md font-medium"
+                            className="bg-stone-900 border border-stone-800 text-stone-300 text-[9px] px-1.5 py-0.5 rounded font-medium"
                           >
                             {feat}
                           </span>
@@ -341,13 +341,13 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                       <button
                         id={`add-to-quote-btn-${meal.id}`}
                         onClick={() => onAddFoodToQuote(meal)}
-                        className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
+                        className={`w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
                           countInCart > 0
                             ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-800/40'
                             : 'bg-stone-900 hover:bg-emerald-700 hover:text-white border border-stone-800 hover:border-emerald-600 text-stone-300'
                         }`}
                       >
-                        <Plus className="w-3.5 h-3.5" />
+                        <Plus className="w-3 h-3" />
                         <span>Add To Query List {countInCart > 0 && `(${countInCart})`}</span>
                       </button>
                     </div>

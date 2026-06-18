@@ -14,6 +14,21 @@ export default function App() {
   // Add notification state
   const [addedNotification, setAddedNotification] = React.useState<string | null>(null);
 
+  // Add theme state
+  const [theme, setTheme] = React.useState<'dark' | 'light'>(() => {
+    const saved = localStorage.getItem('happy_belly_theme');
+    if (saved === 'light' || saved === 'dark') {
+      return saved;
+    }
+    return 'dark';
+  });
+
+  const handleToggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('happy_belly_theme', nextTheme);
+  };
+
   // Sync with localStorage on mount for smooth UX
   React.useEffect(() => {
     const savedCart = localStorage.getItem('happy_belly_catering_cart');
@@ -71,13 +86,15 @@ export default function App() {
   };
 
   return (
-    <div id="application-root" className="min-h-screen flex flex-col bg-[#0c0d0e] text-stone-100 transition-colors">
+    <div id="application-root" className={`min-h-screen flex flex-col transition-all duration-300 ${theme === 'dark' ? 'bg-[#0c0d0e] text-stone-100' : 'theme-light bg-[#faf9f6] text-stone-900'}`}>
       
       {/* 1. Header & Translucent Sticky Bar */}
       <Navbar 
         currentTab={currentTab} 
         setCurrentTab={setCurrentTab} 
         onOpenBooking={() => setCurrentTab('booking')} 
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Floating alert for item selection */}
@@ -163,7 +180,7 @@ export default function App() {
               </span>
             </div>
             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed font-light">
-              Designing bespoke gastronomy, strict food board-compliant clinical hygiene, and flawless temperature-controlled transit logistics across Nairobi and East African regions.
+              Your trusted healthy catering and clean food partner. Designing nutritious menus, strict KeBS-compliant clinical hygiene, and flawless temperature-controlled transit of clean food across Nairobi and East African regions.
             </p>
             <div className="flex items-center gap-4 text-stone-500 hover:text-white pt-2">
               <a href="#instagram" className="hover:text-emerald-400 transition-colors">

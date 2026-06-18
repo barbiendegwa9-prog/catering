@@ -1,7 +1,7 @@
 import { MealItem, Testimonial } from './types';
 
 // Path to the generated hero banner asset served by Vite
-export const HERO_BANNER_IMG = '/src/assets/images/catering_hero_banner_1781770999477.jpg';
+export const HERO_BANNER_IMG = 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=1600&q=80';
 
 export const FEATURED_MEALS: MealItem[] = [
   {

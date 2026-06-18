@@ -650,7 +650,7 @@ export default function BookingInquiryView({
 
               <div className="flex items-center justify-center gap-2 text-[10px] text-stone-500 font-mono text-center pt-4">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Prisons / FDA-Compliant Sanitized Delivery Seal</span>
+                <span>KeBS Certified / 100% Clean Food Sanitized Delivery Seal</span>
               </div>
             </div>
           </div>

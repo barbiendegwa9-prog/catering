@@ -8,7 +8,181 @@
 }
 
 @layer base {
+  html {
+    font-size: 14px; /* Proportions down all text (rem-based) globally for a cleaner, compact feel */
+  }
   body {
     @apply font-sans bg-[#0c0d0e] text-stone-100 antialiased;
   }
 }
+
+/* Luxury Light Theme Overrides */
+.theme-light {
+  background-color: #faf8f5 !important;
+  color: #1a1816 !important;
+}
+
+.theme-light body {
+  background-color: #faf8f5 !important;
+  color: #1a1816 !important;
+}
+
+/* Background converters from obsidian-dark to gourmet off-white */
+.theme-light .bg-\[\#0c0d0e\],
+.theme-light .bg-stone-950,
+.theme-light #application-root {
+  background-color: #faf8f5 !important;
+}
+
+/* Footer & Card Background overrides */
+.theme-light footer,
+.theme-light footer#footer-section,
+.theme-light .bg-stone-900,
+.theme-light .bg-stone-900\/60,
+.theme-light .bg-stone-900\/80,
+.theme-light .bg-stone-900\/40,
+.theme-light .bg-stone-900\/95,
+.theme-light .bg-[#131517],
+.theme-light .bg-stone-950\/60,
+.theme-light .bg-stone-950\/40 {
+  background-color: #f4f2eb !important;
+  border-color: rgba(120, 110, 100, 0.2) !important;
+}
+
+.theme-light .bg-stone-900\/10 {
+  background-color: rgba(5, 150, 105, 0.08) !important; /* light green pill badge */
+}
+
+/* Border overrides */
+.theme-light .border-stone-800,
+.theme-light .border-stone-850,
+.theme-light .border-stone-900,
+.theme-light .border-stone-900\/60,
+.theme-light .border-stone-800\/40,
+.theme-light .border-stone-800\/50,
+.theme-light .border-stone-800\/60,
+.theme-light .border-stone-800\/80 {
+  border-color: rgba(120, 110, 100, 0.22) !important;
+}
+
+/* Text overrides */
+.theme-light .text-stone-100,
+.theme-light .text-white,
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4 {
+  color: #1a1816 !important;
+}
+
+.theme-light .text-stone-300 {
+  color: #383530 !important;
+}
+
+.theme-light .text-stone-400,
+.theme-light .text-stone-450 {
+  color: #605c56 !important;
+}
+
+.theme-light .text-stone-500 {
+  color: #807b73 !important;
+}
+
+/* Primary emerald text switches to a deeper elegant forest emerald for readability scale */
+.theme-light .text-emerald-400,
+.theme-light .text-emerald-500 {
+  color: #0d9488 !important; /* ocean-emerald dark contrast */
+}
+
+.theme-light .text-emerald-300 {
+  color: #065f46 !important;
+}
+
+/* Dynamic inputs / forms styling */
+.theme-light input,
+.theme-light select,
+.theme-light textarea {
+  background-color: #ffffff !important;
+  color: #1a1816 !important;
+  border: 1px solid rgba(120, 110, 100, 0.28) !important;
+}
+
+.theme-light input:focus,
+.theme-light select:focus,
+.theme-light textarea:focus {
+  border-color: #0d9488 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15) !important;
+}
+
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+  color: #9c9890 !important;
+}
+
+/* Staging Hours or Code highlights */
+.theme-light .font-mono {
+  background-color: rgba(120, 110, 100, 0.08) !important;
+  color: #272522 !important;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Exclude hero banner image brightness and text formatting */
+.theme-light #hero-section h1,
+.theme-light #hero-section h1 span {
+  /* Let text gradient background remain clean or white */
+}
+.theme-light #hero-section p {
+  color: #faf8f5 !important; /* Keep hero subtitle perfectly readable over dark backdrop */
+}
+
+.theme-light #hero-section .text-stone-300 {
+  color: #faf8f5 !important;
+}
+
+.theme-light #hero-section .font-mono {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+/* Category lists selector tabs in Light Theme */
+.theme-light .bg-stone-905,
+.theme-light .bg-stone-900\/50,
+.theme-light .hover\:bg-stone-850:hover {
+  background-color: #eae9e0 !important;
+  color: #44403c !important;
+}
+
+/* Counter controls and incremental widgets */
+.theme-light .bg-stone-950\/80 {
+  background-color: #faf8f5 !important;
+  border-color: rgba(120, 110, 100, 0.3) !important;
+}
+
+/* Ensure the total invoice dynamic calculator card stands out beautifully in light mode */
+.theme-light .bg-emerald-950\/30 {
+  background-color: rgba(13, 148, 136, 0.08) !important;
+  border-color: rgba(13, 148, 136, 0.2) !important;
+}
+
+.theme-light .bg-emerald-950\/40,
+.theme-light .bg-emerald-950\/20 {
+  background-color: rgba(13, 148, 136, 0.12) !important;
+  border-color: rgba(13, 148, 136, 0.25) !important;
+}
+
+.theme-light .text-emerald-100 {
+  color: #074e40 !important;
+}
+
+.theme-light .text-emerald-200 {
+  color: #0f766e !important;
+}
+
+/* Hover scales on grid item cards */
+.theme-light .hover\:bg-[#1c1e20]:hover {
+  background-color: #ebe9e0 !important;
+}
+
