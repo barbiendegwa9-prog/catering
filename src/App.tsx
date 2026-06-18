@@ -16,7 +16,7 @@ export default function App() {
 
   // Sync with localStorage on mount for smooth UX
   React.useEffect(() => {
-    const savedCart = localStorage.getItem('ladha_gastronomy_cart');
+    const savedCart = localStorage.getItem('happy_belly_catering_cart');
     if (savedCart) {
       try {
         setSelectedCart(JSON.parse(savedCart));
@@ -28,7 +28,7 @@ export default function App() {
 
   const saveCartToStorage = (cart: Record<string, number>) => {
     setSelectedCart(cart);
-    localStorage.setItem('ladha_gastronomy_cart', JSON.stringify(cart));
+    localStorage.setItem('happy_belly_catering_cart', JSON.stringify(cart));
   };
 
   // State manipulators
@@ -156,10 +156,10 @@ export default function App() {
           <div className="space-y-4">
             <div id="footer-logo" className="flex items-center gap-2.5">
               <div className="bg-emerald-700 text-white p-2 rounded-xl">
-                <ChefHat className="w-5 h-5 stroke-[2]" />
+                 <ChefHat className="w-5 h-5 stroke-[2]" />
               </div>
               <span className="font-serif text-xl font-bold text-white tracking-tight">
-                LADHA<span className="text-emerald-500 font-sans font-light">GASTRONOMY</span>
+                HAPPY BELLY<span className="text-emerald-500 font-sans font-light"> CATERING</span>
               </span>
             </div>
             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed font-light">
@@ -221,18 +221,18 @@ export default function App() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                 <address className="not-italic font-light">
-                  Ladha Food Arena Suite, Off Ngong Road, Kilimani, Nairobi, Kenya
+                  Happy Belly Food Arena Suite, Off Ngong Road, Kilimani, Nairobi, Kenya
                 </address>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-emerald-500" />
-                <span className="font-mono font-light">+254 (0) 700 555 LADHA</span>
+                <span className="font-mono font-light">+254 (0) 700 555 BELLY</span>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-emerald-500" />
-                <span className="font-light">booking@ladhagastronomy.com</span>
+                <span className="font-light">booking@happybellycatering.co.ke</span>
               </div>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function App() {
 
         {/* copyright and system details */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-stone-500 font-mono">
-          <p>© {new Date().getFullYear()} Ladha Gastronomy Group LLC. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Happy Belly Catering Group LLC. All rights reserved.</p>
           <div className="flex items-center gap-2 bg-stone-900 border border-stone-800 px-3 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>KeBS & Ministry of Health Guidelines Active</span>

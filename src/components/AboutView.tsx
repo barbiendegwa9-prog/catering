@@ -12,10 +12,10 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
       <div id="about-header" className="text-center max-w-3xl mx-auto space-y-4 pt-10">
         <div className="inline-flex items-center gap-1.5 p-1 px-3 bg-emerald-950/40 text-emerald-300 rounded-full text-xs font-semibold border border-emerald-900/45 uppercase tracking-widest font-mono">
           <Award className="w-3.5 h-3.5" />
-          <span>About Ladha Gastronomy</span>
+          <span>About Happy Belly Catering</span>
         </div>
         <h1 id="about-headline" className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-          Crafting Ladha Gastronomy Since 2012
+          Crafting Happy Belly Catering Since 2012
         </h1>
         <p id="about-subtitle" className="text-stone-400 text-base sm:text-lg leading-relaxed">
           The fine culinary narrative of passionate chefs, robust hygiene controls, and state-of-the-art event planning.
@@ -55,13 +55,13 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
 
           <div className="space-y-4 text-stone-300 text-sm sm:text-base leading-relaxed">
             <p>
-              Ladha Gastronomy was founded in 2012 by executive master chef Julian Vane and logistics veteran Isabella Sterling. Julian arrived from prestigious European hotels with a simple vision: to bridge the gap between elegant five-star fine dining and the complex operational realities of on-site catering events.
+              Happy Belly Catering was founded in 2012 by executive master chef Julian Vane and logistics veteran Isabella Sterling. Julian arrived from prestigious European hotels with a simple vision: to bridge the gap between elegant five-star fine dining and the complex operational realities of on-site catering events.
             </p>
             <p>
               What started as an artisan test room catering for discrete private dinners soon gained repute among financial headquarters and grand event hosts. Julian’s dedication to custom, scratch-made menus combined with Isabella’s clockwork dispatch checklist meant clients didn’t just get meals—they got reassurance and absolute precision.
             </p>
             <p>
-              By 2020, Ladha had transitioned into a full-scale culinary group housed inside integrated 8,000 square-foot prep suites equipped with high-tech steam monitors, flash cold storage facilities, and green electric heating trucks. Today, we stand proud as a premier sustainable provider of curated weddings, high-powered boardrooms, and grand holiday celebrations.
+              By 2020, Happy Belly had transitioned into a full-scale culinary group housed inside integrated 8,000 square-foot prep suites equipped with high-tech steam monitors, flash cold storage facilities, and green electric heating trucks. Today, we stand proud as a premier sustainable provider of curated weddings, high-powered boardrooms, and grand holiday celebrations.
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
       {/* Inline CTA block */}
       <section id="about-cta-block" className="bg-emerald-900/80 border border-emerald-800/50 p-8 sm:p-12 rounded-3xl text-center text-white space-y-6 max-w-4xl mx-auto shadow-xl">
         <h2 className="font-serif text-2xl sm:text-3.5xl font-bold tracking-tight">
-          Ready to Host a Ladha Dining Experience?
+          Ready to Host a Happy Belly Dining Experience?
         </h2>
         <p className="max-w-2xl mx-auto text-emerald-100 text-sm leading-relaxed font-light">
           Get in touch with our operations concierge or try our interactive pricing calculator to receive a completely customized catering quotation instantly.

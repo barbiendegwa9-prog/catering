@@ -57,7 +57,7 @@ export default function BookingInquiryView({
 
   // Load inquiries on mount
   React.useEffect(() => {
-    const saved = localStorage.getItem('ladha_gastronomy_bookings');
+    const saved = localStorage.getItem('happy_belly_catering_bookings');
     if (saved) {
       try {
         setSubmittedInquiries(JSON.parse(saved));
@@ -78,7 +78,7 @@ export default function BookingInquiryView({
   // Sync to localStorage
   const saveInquiries = (list: BookingInquiry[]) => {
     setSubmittedInquiries(list);
-    localStorage.setItem('ladha_gastronomy_bookings', JSON.stringify(list));
+    localStorage.setItem('happy_belly_catering_bookings', JSON.stringify(list));
   };
 
   // Calculations
@@ -157,7 +157,7 @@ export default function BookingInquiryView({
     }
 
     const newInquiry: BookingInquiry = {
-      id: `LADHA-${Math.floor(1000 + Math.random() * 9000)}`,
+      id: `HBELLY-${Math.floor(1000 + Math.random() * 9000)}`,
       customerName,
       customerEmail,
       customerPhone,

@@ -44,9 +44,9 @@ export default function Navbar({ currentTab, setCurrentTab, onOpenBooking }: Nav
             </div>
             <div>
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-                LADHA<span className="text-emerald-500 font-sans font-light">GASTRONOMY</span>
+                HAPPY BELLY<span className="text-emerald-500 font-sans font-light"> CATERING</span>
               </span>
-              <p className="text-[10px] text-stone-400 font-mono tracking-widest uppercase">Gastronomy & Hospitality</p>
+              <p className="text-[10px] text-stone-400 font-mono tracking-widest uppercase">Gastronomy & Custom Catering</p>
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function Navbar({ currentTab, setCurrentTab, onOpenBooking }: Nav
               className="hidden lg:flex items-center gap-2 text-stone-300 hover:text-emerald-400 transition-colors py-1.5"
             >
               <Phone className="w-4 h-4 text-emerald-500" />
-              <span className="text-xs font-mono font-medium text-stone-300 hover:text-emerald-400 transition-colors">+254 (0) 700 555 LADHA</span>
+              <span className="text-xs font-mono font-medium text-stone-300 hover:text-emerald-400 transition-colors">+254 (0) 700 555 BELLY</span>
             </a>
             <button
               id="get-instant-quote-btn"

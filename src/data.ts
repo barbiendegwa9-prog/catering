@@ -22,7 +22,7 @@ export const FEATURED_MEALS: MealItem[] = [
     category: 'meal',
     imageUrl: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&auto=format&fit=crop&q=80',
     popular: true,
-    features: ['Lake Victoria Fresh', 'Ladha Signature']
+    features: ['Lake Victoria Fresh', 'Happy Belly Signature']
   },
   {
     id: 'm3',
@@ -53,7 +53,7 @@ export const FEATURED_MEALS: MealItem[] = [
     category: 'snack',
     imageUrl: 'https://images.unsplash.com/photo-1572656631137-7935297eff55?w=800&auto=format&fit=crop&q=80',
     popular: true,
-    features: ['Ladha Classic', 'Crispy Bite']
+    features: ['Happy Belly Classic', 'Crispy Bite']
   },
   {
     id: 's2',
@@ -109,7 +109,7 @@ export const FEATURED_MEALS: MealItem[] = [
   // Corporate Packages
   {
     id: 'p1',
-    name: 'Ladha Executive Karibu Feast',
+    name: 'Happy Belly Executive Karibu Feast',
     description: 'Premium curated meal combo designed for events and executive boards. Includes Highland Beef Samosas, Tilapia Wet-Fry mains, Multilayered Chapatis, and pitchers of hot/chilled Dawa.',
     price: 2400.00,
     category: 'package',
@@ -144,7 +144,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't1',
     name: 'Amani Wambui',
     role: 'Corporate Relations Lead, Safaricom PLC',
-    text: 'Ladha Gastronomy transformed our annual executive stakeholder gala in Nairobi into a magnificent culinary journey. The quality of the Nile Tilapia fillet and the spiced Samosas was absolutely world-class. Complete hygiene and outstanding presentation!',
+    text: 'Happy Belly Catering transformed our annual executive stakeholder gala in Nairobi into a magnificent culinary journey. The quality of the Nile Tilapia fillet and the spiced Samosas was absolutely world-class. Complete hygiene and outstanding presentation!',
     rating: 5,
     date: 'April 14, 2026'
   },
@@ -152,7 +152,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't2',
     name: 'Dr. Kevin Ombati',
     role: 'Groom & Event Organiser',
-    text: 'We hired Ladha for our wedding reception of 150 guests at the Windsor Golf Hotel grounds, choosing their Majestic Safari Banquet. The Acacia Charcoal Nyama Choma and Swahili Biryani were incredible. Our guests are still praising the flavor details today!',
+    text: 'We hired Happy Belly for our wedding reception of 150 guests at the Windsor Golf Hotel grounds, choosing their Majestic Safari Banquet. The Acacia Charcoal Nyama Choma and Swahili Biryani were incredible. Our guests are still praising the flavor details today!',
     rating: 5,
     date: 'May 29, 2026'
   },

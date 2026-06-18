@@ -112,7 +112,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 bg-stone-900 border border-stone-800 px-3.5 py-1 rounded-full text-stone-300 text-xs font-mono font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>Welcome to Ladha Gastronomy</span>
+              <span>Welcome to Happy Belly Catering</span>
             </div>
             
             <h2 id="welcome-title" className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -124,7 +124,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
             </p>
             
             <p id="welcome-body-2" className="text-stone-400 text-sm leading-relaxed border-l-2 border-emerald-500 pl-4">
-              At Ladha, pristine hygiene guidelines and stringent security protocols govern our master-staging kitchens. We believe the path to absolute peace-of-mind at any major celebration rests equal parts on Michelin-quality taste and strict, clockwork logistics.
+              At Happy Belly, pristine hygiene guidelines and stringent security protocols govern our master-staging kitchens. We believe the path to absolute peace-of-mind at any major celebration rests equal parts on Michelin-quality taste and strict, clockwork logistics.
             </p>
           </div>
 
@@ -180,9 +180,9 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <p className="text-emerald-400 text-xs font-mono tracking-widest uppercase">The Ladha Standard</p>
+            <p className="text-emerald-400 text-xs font-mono tracking-widest uppercase">The Happy Belly Standard</p>
             <h2 id="why-choose-us-title" className="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
-              Why Ladha Gastronomy Stands Apart
+              Why Happy Belly Catering Stands Apart
             </h2>
             <p id="why-choose-us-subtitle" className="text-stone-400 text-sm sm:text-base leading-relaxed">
               Our holistic operations checklist is designed to streamline event organization and provide premium taste parameters affordably.
@@ -365,7 +365,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
           <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
             <p className="text-emerald-400 text-xs font-mono tracking-widest uppercase">Gastronic Appreciations</p>
             <h2 id="testimonials-title" className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Nourishing Ladha Events
+              Nourishing Happy Belly Events
             </h2>
             <p className="text-stone-400 text-sm leading-relaxed">
               Real stories and rated approvals from wedding organizers, corporate clients, and private culinary lovers.
