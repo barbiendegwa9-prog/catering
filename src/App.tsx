@@ -143,12 +143,14 @@ export default function App() {
                 onOrderNow={() => setCurrentTab('booking')}
                 onAddFoodToQuote={handleAddFoodToQuote}
                 selectedItemsCount={selectedCart}
+                theme={theme}
               />
             )}
 
             {currentTab === 'about' && (
               <AboutView 
                 onOpenBooking={() => setCurrentTab('booking')}
+                theme={theme}
               />
             )}
 
@@ -159,6 +161,7 @@ export default function App() {
                 onDecrementItem={handleDecrementItem}
                 onRemoveItem={handleRemoveItem}
                 onClearCart={handleClearCart}
+                theme={theme}
               />
             )}
           </motion.div>

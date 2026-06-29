@@ -8,12 +8,10 @@ import {
   Trash2, 
   Plus, 
   Minus, 
-  Check, 
-  FileText, 
   ShieldCheck, 
   Sparkles, 
   Clock, 
-  DollarSign, 
+  FileText,
   BadgeAlert,
   ArrowRight
 } from 'lucide-react';
@@ -26,6 +24,7 @@ interface BookingInquiryViewProps {
   onDecrementItem: (item: MealItem) => void;
   onRemoveItem: (item: MealItem) => void;
   onClearCart: () => void;
+  theme?: 'dark' | 'light';
 }
 
 export default function BookingInquiryView({
@@ -33,7 +32,8 @@ export default function BookingInquiryView({
   onIncrementItem,
   onDecrementItem,
   onRemoveItem,
-  onClearCart
+  onClearCart,
+  theme = 'dark'
 }: BookingInquiryViewProps) {
   
   // Form fields
@@ -82,27 +82,13 @@ export default function BookingInquiryView({
   };
 
   // Calculations
-  const cartSubtotal = React.useMemo(() => {
-    let sum = 0;
-    FEATURED_MEALS.forEach(meal => {
-      const qty = selectedCart[meal.id] || 0;
-      if (qty > 0) {
-        sum += meal.price * qty;
-      }
-    });
-    return sum;
-  }, [selectedCart]);
-
-  // Food totals adjusted per guest for options that represent per-guest pricing
   const totalFoodCost = React.useMemo(() => {
     let sum = 0;
     FEATURED_MEALS.forEach(meal => {
       const qty = selectedCart[meal.id] || 0;
       if (qty > 0) {
-        // If it's a corporate package or main meal, we multiply by guest count if quantity is treated as per-guest,
-        // or we treat the quantity as the multiplier directly! Let's treat the quantity as a multiplier 
-        // to keep logic extremely simple & intuitive for the user, and show total item prices clearly.
-        sum += meal.price * qty * guestCount; // Traditional catering implies $X per guest * guestCount
+        // Traditional catering implies price per guest * guestCount * quantity of course servings
+        sum += meal.price * qty * guestCount;
       }
     });
     return sum;
@@ -203,60 +189,78 @@ export default function BookingInquiryView({
   };
 
   return (
-    <div id="booking-calculator-view" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-16">
+    <div id="booking-calculator-view" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 space-y-12 sm:space-y-16">
       
       {/* Title */}
       <div id="booking-header" className="text-center max-w-2xl mx-auto space-y-4 pt-10">
-        <div className="inline-flex items-center gap-1.5 p-1 px-3 bg-emerald-950/40 text-emerald-300 rounded-full text-xs font-semibold border border-emerald-900/40 uppercase tracking-widest font-mono">
+        <div className={`inline-flex items-center gap-1.5 p-1 px-3 rounded-full text-xs font-semibold border uppercase tracking-widest font-mono ${
+          theme === 'dark' 
+            ? 'bg-emerald-950/40 text-emerald-300 border-emerald-900/40' 
+            : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+        }`}>
           <Clock className="w-3.5 h-3.5" />
           <span>Interactive Quote & Delivery Calculator</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+        <h1 className={`font-serif text-3xl sm:text-5xl font-bold tracking-tight leading-tight ${
+          theme === 'dark' ? 'text-white' : 'text-stone-900'
+        }`}>
           Configure Your Bespoke Event
         </h1>
-        <p className="text-stone-400 text-sm leading-relaxed">
+        <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
           Use our interactive culinary engine to choose meals, set guest counts, calculate delivery logistics, and receive a secure PDF-ready estimation instantly.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
         
         {/* LEFT 7 COLS: INQUIRY DETAILS & ITEMS SELECTOR */}
-        <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-8">
+        <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-6 sm:space-y-8">
           
           {/* STEP 1: CONCIERGE EVENT SETUP */}
-          <div className="bg-[#131517] border border-stone-800/80 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
-            <div className="flex items-center gap-3 border-b border-stone-800/50 pb-4">
+          <div className={`border rounded-3xl p-5 sm:p-8 shadow-md space-y-6 ${
+            theme === 'dark' 
+              ? 'bg-[#131517] border-stone-800/80 text-white' 
+              : 'bg-white border-stone-200 text-stone-900'
+          }`}>
+            <div className={`flex items-center gap-3 border-b pb-4 ${theme === 'dark' ? 'border-stone-800/50' : 'border-stone-150'}`}>
               <span className="w-7 h-7 rounded-full bg-emerald-700 text-white font-mono font-bold flex items-center justify-center text-xs">1</span>
               <div>
-                <h2 className="font-serif text-lg sm:text-xl font-bold text-white">Event Coordination Setup</h2>
-                <p className="text-stone-400 text-xs">Specify event type and guest parameters to set staff tiers.</p>
+                <h2 className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Event Coordination Setup</h2>
+                <p className={`text-[11px] sm:text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Specify event type and guest parameters to set staff tiers.</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Event Type */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Event Typology</label>
+                <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Event Typology</label>
                 <select
                   id="form-event-type"
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value as EventType)}
-                  className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                  className={`w-full rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                    theme === 'dark' 
+                      ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                      : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                  }`}
                 >
-                  <option value="corporate" className="bg-stone-900">Corporate Boardroom Buffet</option>
-                  <option value="wedding" className="bg-stone-900">Majestic Wedding Banquet</option>
-                  <option value="birthday" className="bg-stone-900">Birthday Milestone Celebration</option>
-                  <option value="private_party" className="bg-stone-900">Private Gala Diner</option>
-                  <option value="other" className="bg-stone-900">Other Bespoke Event</option>
+                  <option value="corporate" className={theme === 'dark' ? 'bg-stone-950 text-stone-200' : 'bg-white text-stone-900'}>Corporate Boardroom Buffet</option>
+                  <option value="wedding" className={theme === 'dark' ? 'bg-stone-950 text-stone-200' : 'bg-white text-stone-900'}>Majestic Wedding Banquet</option>
+                  <option value="birthday" className={theme === 'dark' ? 'bg-stone-950 text-stone-200' : 'bg-white text-stone-900'}>Birthday Milestone Celebration</option>
+                  <option value="private_party" className={theme === 'dark' ? 'bg-stone-950 text-stone-200' : 'bg-white text-stone-900'}>Private Gala Diner</option>
+                  <option value="other" className={theme === 'dark' ? 'bg-stone-950 text-stone-200' : 'bg-white text-stone-900'}>Other Bespoke Event</option>
                 </select>
               </div>
 
               {/* Guest Count */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Expected Guest Count</label>
-                  <span className="text-sm font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900/30 px-2 py-0.5 rounded-md">
+                  <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Expected Guests</label>
+                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md border ${
+                    theme === 'dark'
+                      ? 'text-emerald-400 bg-emerald-950/40 border-emerald-900/30'
+                      : 'text-emerald-800 bg-emerald-50 border-emerald-200'
+                  }`}>
                     {guestCount} Guests
                   </span>
                 </div>
@@ -269,13 +273,15 @@ export default function BookingInquiryView({
                     step="5"
                     value={guestCount}
                     onChange={(e) => setGuestCount(Number(e.target.value))}
-                    className="w-full h-1.5 bg-stone-800 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                    className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer accent-emerald-600 ${
+                      theme === 'dark' ? 'bg-stone-800' : 'bg-stone-200'
+                    }`}
                   />
-                  <div className="flex justify-between text-[10px] text-stone-500 font-mono pt-1">
+                  <div className={`flex justify-between text-[9px] font-mono pt-1 ${theme === 'dark' ? 'text-stone-500' : 'text-stone-450'}`}>
                     <span>10 Min</span>
                     <span>100 Standard</span>
                     <span>250 Premium</span>
-                    <span>500 Grand Max</span>
+                    <span>500 Max</span>
                   </div>
                 </div>
               </div>
@@ -284,9 +290,9 @@ export default function BookingInquiryView({
             {/* Timings */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Delivery/Staging Date</label>
+                <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Delivery/Staging Date</label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
                     <Calendar className="w-4 h-4" />
                   </span>
                   <input
@@ -295,15 +301,19 @@ export default function BookingInquiryView({
                     required
                     value={deliveryDate}
                     onChange={(e) => setDeliveryDate(e.target.value)}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                    className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                      theme === 'dark' 
+                        ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                        : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                    }`}
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Serving / Dishout Time</label>
+                <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Serving / Dishout Time</label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
                     <Clock className="w-4 h-4" />
                   </span>
                   <input
@@ -312,7 +322,11 @@ export default function BookingInquiryView({
                     required
                     value={deliveryTime}
                     onChange={(e) => setDeliveryTime(e.target.value)}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                    className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                      theme === 'dark' 
+                        ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                        : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                    }`}
                   />
                 </div>
               </div>
@@ -320,13 +334,17 @@ export default function BookingInquiryView({
           </div>
 
           {/* STEP 2: SELECTED DISHES STAGING CHECKS */}
-          <div className="bg-[#131517] border border-stone-800/80 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
-            <div className="flex items-center justify-between border-b border-stone-800/50 pb-4">
+          <div className={`border rounded-3xl p-5 sm:p-8 shadow-md space-y-6 ${
+            theme === 'dark' 
+              ? 'bg-[#131517] border-stone-800/80 text-white' 
+              : 'bg-white border-stone-200 text-stone-900'
+          }`}>
+            <div className={`flex items-center justify-between border-b pb-4 ${theme === 'dark' ? 'border-stone-800/50' : 'border-stone-150'}`}>
               <div className="flex items-center gap-3">
                 <span className="w-7 h-7 rounded-full bg-emerald-700 text-white font-mono font-bold flex items-center justify-center text-xs">2</span>
                 <div>
-                  <h2 className="font-serif text-lg sm:text-xl font-bold text-white">Configured Catering Items</h2>
-                  <p className="text-stone-400 text-xs">Review dishes included in your quote. Adjust multipliers relative to guest total.</p>
+                  <h2 className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Configured Catering Items</h2>
+                  <p className={`text-[11px] sm:text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Review dishes included in your quote. Adjust multipliers relative to guest total.</p>
                 </div>
               </div>
               
@@ -335,7 +353,9 @@ export default function BookingInquiryView({
                 <button
                   type="button"
                   onClick={onClearCart}
-                  className="text-stone-400 hover:text-red-400 transition-colors text-xs font-semibold flex items-center gap-1"
+                  className={`transition-colors text-xs font-bold flex items-center gap-1 p-1 rounded-md hover:text-red-500 ${
+                    theme === 'dark' ? 'text-stone-400' : 'text-stone-600'
+                  }`}
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                   <span>Reset List</span>
@@ -345,21 +365,29 @@ export default function BookingInquiryView({
 
             {/* Rendering the items */}
             {Object.keys(selectedCart).length === 0 ? (
-              <div className="text-center py-10 space-y-3 bg-stone-950/40 rounded-2xl border border-dashed border-stone-800/80">
-                <p className="text-stone-400 text-sm">Your quote checklist is currently empty.</p>
-                <p className="text-emerald-400 text-xs font-semibold">
-                  Browse our popular meals, snacks, or packages and add them!
+              <div className={`text-center py-10 space-y-3 rounded-2xl border border-dashed ${
+                theme === 'dark' 
+                  ? 'bg-stone-950/40 border-stone-800/80' 
+                  : 'bg-stone-50 border-stone-200'
+              }`}>
+                <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Your quote checklist is currently empty.</p>
+                <p className="text-emerald-500 text-xs font-bold uppercase tracking-wider">
+                  Browse our popular meals & add them!
                 </p>
               </div>
             ) : (
-              <div className="divide-y divide-stone-800/50 max-h-96 overflow-y-auto pr-2 space-y-4">
+              <div className={`divide-y max-h-96 overflow-y-auto pr-2 space-y-4 ${
+                theme === 'dark' ? 'divide-stone-800/50' : 'divide-stone-150'
+              }`}>
                 {FEATURED_MEALS.map((meal) => {
                   const qty = selectedCart[meal.id] || 0;
                   if (qty === 0) return null;
                   
                   return (
                     <div key={meal.id} className="flex gap-4 items-start py-4 first:pt-0 last:pb-0">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-stone-900 border border-stone-800 shrink-0">
+                      <div className={`w-14 h-14 rounded-xl overflow-hidden shrink-0 border ${
+                        theme === 'dark' ? 'bg-stone-900 border-stone-800' : 'bg-stone-100 border-stone-200'
+                      }`}>
                         <img 
                           src={meal.imageUrl} 
                           alt={meal.name} 
@@ -370,41 +398,47 @@ export default function BookingInquiryView({
                       
                       <div className="flex-1 space-y-1.5">
                         <div className="flex items-start justify-between gap-2">
-                          <h4 className="text-white font-serif font-bold text-sm leading-snug">{meal.name}</h4>
-                          <span className="font-mono text-stone-100 bg-stone-900 border border-stone-800 font-semibold text-xs shrink-0 px-2 py-0.5 rounded">
+                          <h4 className={`font-serif font-bold text-xs sm:text-sm leading-snug ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>{meal.name}</h4>
+                          <span className={`font-mono font-bold text-[10px] sm:text-xs shrink-0 px-2 py-0.5 rounded border ${
+                            theme === 'dark' 
+                              ? 'text-stone-100 bg-stone-900 border-stone-800' 
+                              : 'text-stone-900 bg-stone-50 border-stone-200'
+                          }`}>
                             Ksh {(meal.price * qty * guestCount).toLocaleString()}
                           </span>
                         </div>
-                        <p className="text-stone-450 text-[11px] line-clamp-1">{meal.description}</p>
+                        <p className={`text-[10px] sm:text-xs line-clamp-1 ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>{meal.description}</p>
                         
                         {/* Control quantities inside order tool */}
-                        <div className="flex items-center justify-between pt-1">
-                          <div className="text-[10px] text-stone-450 font-medium">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+                          <div className={`text-[9px] sm:text-[10px] font-medium ${theme === 'dark' ? 'text-stone-500' : 'text-stone-450'}`}>
                             Ksh {meal.price.toLocaleString()} / person × {guestCount} guests × {qty} serving course
                           </div>
-                          <div className="flex items-center gap-2.5 bg-stone-900 border border-stone-800 px-2 py-1 rounded-lg">
+                          <div className={`flex items-center gap-2 px-2 py-1 rounded-lg border w-fit ${
+                            theme === 'dark' ? 'bg-stone-900 border-stone-800' : 'bg-stone-50 border-stone-200'
+                          }`}>
                             <button
                               type="button"
                               onClick={() => onDecrementItem(meal)}
-                              className="text-stone-450 hover:text-white transition-colors"
+                              className={`transition-colors p-0.5 ${theme === 'dark' ? 'text-stone-400 hover:text-white' : 'text-stone-600 hover:text-stone-900'}`}
                             >
                               <Minus className="w-3 h-3" />
                             </button>
-                            <span className="font-mono text-xs font-bold text-stone-100 shrink-0 min-w-4 text-center">
+                            <span className={`font-mono text-xs font-bold shrink-0 min-w-4 text-center ${theme === 'dark' ? 'text-stone-100' : 'text-stone-900'}`}>
                               {qty}
                             </span>
                             <button
                               type="button"
                               onClick={() => onIncrementItem(meal)}
-                              className="text-stone-450 hover:text-white transition-colors"
+                              className={`transition-colors p-0.5 ${theme === 'dark' ? 'text-stone-400 hover:text-white' : 'text-stone-600 hover:text-stone-900'}`}
                             >
-                              <Plus className="w-3" />
+                              <Plus className="w-3 h-3" />
                             </button>
-                            <span className="text-[10px] text-stone-700">|</span>
+                            <span className="text-[10px] text-stone-300">|</span>
                             <button
                               type="button"
                               onClick={() => onRemoveItem(meal)}
-                              className="text-[10px] font-bold text-red-400 hover:text-red-300 uppercase"
+                              className="text-[10px] font-bold text-red-500 hover:text-red-400 uppercase p-0.5"
                             >
                               Delete
                             </button>
@@ -419,12 +453,16 @@ export default function BookingInquiryView({
           </div>
 
           {/* STEP 3: CONTACT & LOGISTICS INFORMATION */}
-          <div className="bg-[#131517] border border-stone-800/80 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
-            <div className="flex items-center gap-3 border-b border-stone-800/50 pb-4">
+          <div className={`border rounded-3xl p-5 sm:p-8 shadow-md space-y-6 ${
+            theme === 'dark' 
+              ? 'bg-[#131517] border-stone-800/80 text-white' 
+              : 'bg-white border-stone-200 text-stone-900'
+          }`}>
+            <div className={`flex items-center gap-3 border-b pb-4 ${theme === 'dark' ? 'border-stone-800/50' : 'border-stone-150'}`}>
               <span className="w-7 h-7 rounded-full bg-emerald-700 text-white font-mono font-bold flex items-center justify-center text-xs">3</span>
               <div>
-                <h2 className="font-serif text-lg sm:text-xl font-bold text-white">Logistics & Client Details</h2>
-                <p className="text-stone-400 text-xs">Please specify your delivery address and contact details to proceed.</p>
+                <h2 className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Logistics & Client Details</h2>
+                <p className={`text-[11px] sm:text-xs ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Please specify your delivery address and contact details to proceed.</p>
               </div>
             </div>
 
@@ -432,9 +470,9 @@ export default function BookingInquiryView({
               {/* Primary Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Contact Full Name</label>
+                  <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Contact Full Name</label>
                   <div className="relative">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
                       <Users className="w-4 h-4" />
                     </span>
                     <input
@@ -444,15 +482,19 @@ export default function BookingInquiryView({
                       placeholder="e.g. Johnathan Miller"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                      className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                        theme === 'dark' 
+                          ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                          : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                      }`}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Contact Email Address</label>
+                  <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Contact Email Address</label>
                   <div className="relative">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
                       <Mail className="w-4 h-4" />
                     </span>
                     <input
@@ -462,7 +504,11 @@ export default function BookingInquiryView({
                       placeholder="e.g. john@company.com"
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
-                      className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                      className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                        theme === 'dark' 
+                          ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                          : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                      }`}
                     />
                   </div>
                 </div>
@@ -471,9 +517,9 @@ export default function BookingInquiryView({
               {/* Phone & Distance slider */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Hotline Phone Number</label>
+                  <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Hotline Phone Number</label>
                   <div className="relative">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
                       <Phone className="w-4 h-4" />
                     </span>
                     <input
@@ -483,15 +529,23 @@ export default function BookingInquiryView({
                       placeholder="e.g. +254 712 345678"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                      className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                        theme === 'dark' 
+                          ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                          : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                      }`}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Transit Distance (Est)</label>
-                    <span className="text-sm font-mono font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900/30 px-2 rounded">
+                    <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Transit Distance (Est)</label>
+                    <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded border ${
+                      theme === 'dark'
+                        ? 'text-emerald-400 bg-emerald-950/40 border-emerald-900/30'
+                        : 'text-emerald-800 bg-emerald-50 border-emerald-250'
+                    }`}>
                       {deliveryDistance} Miles
                     </span>
                   </div>
@@ -503,9 +557,11 @@ export default function BookingInquiryView({
                       max="50"
                       value={deliveryDistance}
                       onChange={(e) => setDeliveryDistance(Number(e.target.value))}
-                      className="w-full h-1.5 bg-stone-800 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                      className={`w-full h-1.5 rounded-lg appearance-none cursor-pointer accent-emerald-600 ${
+                        theme === 'dark' ? 'bg-stone-800' : 'bg-stone-200'
+                      }`}
                     />
-                    <div className="flex justify-between text-[9px] text-stone-500 font-mono mt-1">
+                    <div className={`flex justify-between text-[9px] font-mono mt-1 ${theme === 'dark' ? 'text-stone-500' : 'text-stone-450'}`}>
                       <span>Catering Hub (2mi)</span>
                       <span>Suburbs (25mi)</span>
                       <span>Outer Border (50mi)</span>
@@ -516,33 +572,41 @@ export default function BookingInquiryView({
 
               {/* Delivery Address */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Delivery Staging Venue Address</label>
+                <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Delivery Venue Address</label>
                 <div className="relative">
-                  <span className="absolute top-3.5 left-3.5 text-stone-500">
+                  <span className="absolute top-3.5 left-3.5 text-stone-400">
                     <MapPin className="w-4 h-4" />
                   </span>
                   <input
                     id="form-delivery-address"
                     type="text"
                     required
-                    placeholder="e.g. 500 Oak Avenue, Grand Plaza Suite, Seattle WA"
+                    placeholder="e.g. 500 Oak Avenue, Ngong Road, Nairobi"
                     value={deliveryAddress}
                     onChange={(e) => setDeliveryAddress(e.target.value)}
-                    className="w-full bg-stone-900/60 border border-stone-800 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                    className={`w-full rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                      theme === 'dark' 
+                        ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                        : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                    }`}
                   />
                 </div>
               </div>
 
               {/* Custom Notes & Allergens */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase text-stone-400 tracking-wider">Dietary Preferences & Special Requests</label>
+                <label className={`text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Dietary Preferences & Requests</label>
                 <textarea
                   id="form-notes"
                   rows={3}
                   placeholder="Include any critical food intolerances, gluten allergies, or specific staging guidelines here..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-stone-900/60 border border-stone-800 rounded-xl px-4 py-3 text-stone-100 text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-600 outline-none transition-colors"
+                  className={`w-full rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500/30 outline-none transition-colors border ${
+                    theme === 'dark' 
+                      ? 'bg-stone-900/60 border-stone-800 text-stone-100 focus:border-emerald-600' 
+                      : 'bg-stone-50 border-stone-250 text-stone-900 focus:bg-white focus:border-emerald-600'
+                  }`}
                 />
               </div>
             </div>
@@ -552,14 +616,18 @@ export default function BookingInquiryView({
 
         {/* RIGHT 5 COLS: LIVE ESTIMATED INVOICE */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-stone-800 space-y-6 relative overflow-hidden">
+          <div className={`rounded-3xl p-6 sm:p-8 shadow-xl border space-y-6 relative overflow-hidden transition-all ${
+            theme === 'dark'
+              ? 'bg-stone-900 border-stone-800 text-white'
+              : 'bg-white border-stone-250 text-stone-900 shadow-xl'
+          }`}>
             {/* Stamp design */}
-            <div className="absolute top-4 right-4 text-stone-800 select-none opacity-20 pointer-events-none">
+            <div className={`absolute top-4 right-4 select-none opacity-10 pointer-events-none ${theme === 'dark' ? 'text-stone-800' : 'text-stone-300'}`}>
               <FileText className="w-24 h-24 stroke-[1]" />
             </div>
 
-            <div className="border-b border-stone-800 pb-4 space-y-1 relative z-10">
-              <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs tracking-widest uppercase">
+            <div className={`pb-4 space-y-1 relative z-10 border-b ${theme === 'dark' ? 'border-stone-800' : 'border-stone-150'}`}>
+              <div className="flex items-center gap-2 text-emerald-500 font-mono text-xs font-bold tracking-widest uppercase">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Live Cost Estimate</span>
               </div>
@@ -570,44 +638,42 @@ export default function BookingInquiryView({
             <div className="space-y-4 font-sans text-sm relative z-10">
               {/* If no items selected */}
               {totalFoodCost === 0 ? (
-                <div className="text-center py-6 space-y-2 border-y border-stone-800/60 my-4">
-                  <p className="text-stone-400 text-xs italic">Choose dishes on the left to activate the dynamic budget estimator.</p>
+                <div className={`text-center py-6 space-y-2 my-4 border-y ${theme === 'dark' ? 'border-stone-800/60' : 'border-stone-150'}`}>
+                  <p className={`text-xs italic ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Choose dishes on the left to activate the dynamic budget estimator.</p>
                 </div>
               ) : (
-                <div className="space-y-3.5 border-y border-stone-800/60 py-4 my-2">
+                <div className={`space-y-3.5 py-4 my-2 border-y ${theme === 'dark' ? 'border-stone-800/60' : 'border-stone-150'}`}>
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-stone-400">Guest Count Factor</span>
-                    <span className="font-mono text-stone-200 font-bold">{guestCount} Guests</span>
+                    <span className={theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}>Guest Count Factor</span>
+                    <span className={`font-mono font-bold ${theme === 'dark' ? 'text-stone-200' : 'text-stone-850'}`}>{guestCount} Guests</span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-stone-400">Menu Surcharges (Dishes Subtotal)</span>
-                    <span className="font-mono text-stone-200">Ksh {totalFoodCost.toLocaleString()}</span>
+                    <span className={theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}>Menu Surcharges (Dishes)</span>
+                    <span className={`font-mono font-bold ${theme === 'dark' ? 'text-stone-200' : 'text-stone-850'}`}>Ksh {totalFoodCost.toLocaleString()}</span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs">
-                    <div className="text-stone-400 flex items-center gap-1">
-                      <span>Kitchen Staging & Staff Fee</span>
-                    </div>
-                    <span className="font-mono text-stone-200">Ksh {stagingFee.toLocaleString()}</span>
+                    <span className={theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}>Kitchen Staging & Staff Fee</span>
+                    <span className={`font-mono font-bold ${theme === 'dark' ? 'text-stone-200' : 'text-stone-850'}`}>Ksh {stagingFee.toLocaleString()}</span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-stone-400">Safe Delivery Logistics ({deliveryDistance}mi)</span>
-                    <span className="font-mono text-stone-200">Ksh {deliveryCost.toLocaleString()}</span>
+                    <span className={theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}>Safe Delivery Logistics ({deliveryDistance}mi)</span>
+                    <span className={`font-mono font-bold ${theme === 'dark' ? 'text-stone-200' : 'text-stone-850'}`}>Ksh {deliveryCost.toLocaleString()}</span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs pt-1.5 border-t border-stone-800/40">
-                    <span className="text-stone-400">Kenyan VAT (16%)</span>
-                    <span className="font-mono text-stone-200">Ksh {taxEst.toLocaleString()}</span>
+                  <div className={`flex justify-between items-center text-xs pt-1.5 border-t ${theme === 'dark' ? 'border-stone-800/40' : 'border-stone-150'}`}>
+                    <span className={theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}>Kenyan VAT (16%)</span>
+                    <span className={`font-mono font-bold ${theme === 'dark' ? 'text-stone-200' : 'text-stone-850'}`}>Ksh {taxEst.toLocaleString()}</span>
                   </div>
                 </div>
               )}
 
               {/* Total Row */}
               <div className="flex items-center justify-between pt-2">
-                <span className="text-stone-300 font-serif text-lg font-bold">Total Estimation:</span>
-                <span className="text-emerald-400 font-mono text-2xl font-extrabold">
+                <span className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-stone-300' : 'text-stone-850'}`}>Total Estimation:</span>
+                <span className={`font-mono text-xl sm:text-2xl font-extrabold ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-700'}`}>
                   Ksh {grandTotal.toLocaleString()}
                 </span>
               </div>
@@ -625,10 +691,10 @@ export default function BookingInquiryView({
 
               {/* Success box */}
               {formSuccess && (
-                <div role="status" className="mb-4 bg-emerald-950/40 border border-emerald-500/30 p-4 rounded-xl text-xs text-emerald-200 flex items-start gap-2.5">
+                <div role="status" className="mb-4 bg-emerald-950/40 border border-emerald-500/30 p-4 rounded-xl text-xs text-emerald-200 flex items-start gap-2.5 animate-fade-in">
                   <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-bold">Inquiry Received!</p>
+                    <p className="font-bold text-white">Inquiry Received!</p>
                     <p className="text-emerald-300/80 mt-0.5">Your bespoke setup is queued under review. Check details below in the submitted inquiries log.</p>
                   </div>
                 </div>
@@ -648,7 +714,7 @@ export default function BookingInquiryView({
                 <ArrowRight className="w-4 h-4 ml-1" />
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] text-stone-500 font-mono text-center pt-4">
+              <div className={`flex items-center justify-center gap-2 text-[10px] font-mono text-center pt-4 ${theme === 'dark' ? 'text-stone-500' : 'text-stone-400'}`}>
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                 <span>KeBS Certified / 100% Clean Food Sanitized Delivery Seal</span>
               </div>
@@ -656,69 +722,87 @@ export default function BookingInquiryView({
           </div>
         </div>
 
-      </div>      {/* HISTORIC DASHBOARD - PERSISTED IN LOCALSTORAGE */}
-      <section id="submitted-inquiries-dashboard" className="border-t border-stone-800/60 pt-16 space-y-8">
-        <div>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">Your Submitted Inquiries ({submittedInquiries.length})</h3>
-          <p className="text-stone-400 text-xs sm:text-sm mt-1">Review active event proposals requested on this browser. Refreshing of the browser does not clear these drafts.</p>
+      </div>
+
+      {/* HISTORIC DASHBOARD - PERSISTED IN LOCALSTORAGE */}
+      <section id="submitted-inquiries-dashboard" className={`pt-12 sm:pt-16 border-t ${
+        theme === 'dark' ? 'border-stone-800/60' : 'border-stone-150'
+      }`}>
+        <div className="space-y-1">
+          <h3 className={`font-serif text-xl sm:text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Your Submitted Inquiries ({submittedInquiries.length})</h3>
+          <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>Review active event proposals requested on this browser. Refreshing of the browser does not clear these drafts.</p>
         </div>
 
         {submittedInquiries.length === 0 ? (
-          <div className="bg-[#131517] border border-stone-800/80 rounded-2xl p-8 text-center text-stone-450 text-xs italic">
+          <div className={`p-8 text-center text-xs italic rounded-2xl border ${
+            theme === 'dark' 
+              ? 'bg-[#131517] border-stone-800/80 text-stone-500' 
+              : 'bg-white border-stone-200 text-stone-500'
+          }`}>
             You have no submitted proposals or inquiries logged. Use the calculator above to finalize one.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 pt-6">
             {submittedInquiries.map((inq) => (
               <div 
                 key={inq.id}
                 id={`submitted-card-${inq.id}`}
-                className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl shadow-md hover:border-emerald-500/20 transition-all flex flex-col justify-between space-y-4"
+                className={`p-6 rounded-2xl shadow-md border transition-all flex flex-col justify-between space-y-4 ${
+                  theme === 'dark'
+                    ? 'bg-[#131517] border-stone-800/80 text-white hover:border-emerald-500/20'
+                    : 'bg-white border-stone-200 text-stone-900 hover:border-emerald-500/20'
+                }`}
               >
-                <div className="flex items-start justify-between border-b border-stone-800/50 pb-3">
+                <div className={`flex items-start justify-between border-b pb-3 ${theme === 'dark' ? 'border-stone-800/50' : 'border-stone-150'}`}>
                   <div>
-                    <span className="font-mono text-xs font-bold text-stone-450">Inquiry ID: </span>
-                    <span className="font-mono text-xs font-extrabold text-emerald-400">{inq.id}</span>
-                    <p className="text-[10px] text-stone-400 mt-0.5">Submitted of {inq.createdAt}</p>
+                    <span className={`font-mono text-xs font-semibold ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>Inquiry ID: </span>
+                    <span className="font-mono text-xs font-extrabold text-emerald-500">{inq.id}</span>
+                    <p className={`text-[10px] mt-0.5 ${theme === 'dark' ? 'text-stone-450' : 'text-stone-500'}`}>Submitted: {inq.createdAt}</p>
                   </div>
                   
                   {/* Status label */}
-                  <span className="bg-emerald-950/45 text-emerald-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-900/35">
+                  <span className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border ${
+                    theme === 'dark'
+                      ? 'bg-emerald-950/45 text-emerald-300 border-emerald-900/35'
+                      : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  }`}>
                     PENDING REVIEW
                   </span>
                 </div>
 
                 {/* Logistics metadata */}
-                <div className="grid grid-cols-2 gap-4 text-xs font-sans text-stone-300">
+                <div className="grid grid-cols-2 gap-4 text-xs font-sans">
                   <div>
-                    <p className="text-[10.5px] text-stone-500 uppercase font-semibold">Event Parameters</p>
-                    <p className="font-bold text-white capitalize mt-0.5">{inq.eventType}</p>
-                    <p className="text-stone-400 mt-0.5">{inq.guestCount} Guests</p>
+                    <p className={`text-[10px] uppercase font-bold ${theme === 'dark' ? 'text-stone-500' : 'text-stone-400'}`}>Event Typology</p>
+                    <p className={`font-bold capitalize mt-0.5 ${theme === 'dark' ? 'text-white' : 'text-stone-850'}`}>{inq.eventType}</p>
+                    <p className={`mt-0.5 ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>{inq.guestCount} Guests</p>
                   </div>
                   <div>
-                    <p className="text-[10.5px] text-stone-500 uppercase font-semibold">Staging Schedule</p>
-                    <p className="font-bold text-white mt-0.5">{inq.deliveryDate}</p>
-                    <p className="text-stone-400 mt-0.5">at {inq.deliveryTime}</p>
+                    <p className={`text-[10px] uppercase font-bold ${theme === 'dark' ? 'text-stone-500' : 'text-stone-400'}`}>Staging Schedule</p>
+                    <p className={`font-bold mt-0.5 ${theme === 'dark' ? 'text-white' : 'text-stone-850'}`}>{inq.deliveryDate}</p>
+                    <p className={`mt-0.5 ${theme === 'dark' ? 'text-stone-400' : 'text-stone-500'}`}>at {inq.deliveryTime}</p>
                   </div>
                 </div>
 
                 {/* Delivery Address */}
-                <div className="text-xs bg-stone-900/40 border border-stone-850 p-3 rounded-xl">
-                  <p className="text-[10px] text-stone-500 uppercase font-semibold">Delivery Address</p>
-                  <p className="text-stone-300 font-medium truncate mt-0.5">{inq.deliveryAddress}</p>
+                <div className={`text-xs p-3 rounded-xl border ${
+                  theme === 'dark' ? 'bg-stone-900/40 border-stone-850' : 'bg-stone-50 border-stone-200/60'
+                }`}>
+                  <p className={`text-[10px] uppercase font-bold ${theme === 'dark' ? 'text-stone-500' : 'text-stone-400'}`}>Delivery Address</p>
+                  <p className={`font-medium truncate mt-0.5 ${theme === 'dark' ? 'text-stone-300' : 'text-stone-750'}`}>{inq.deliveryAddress}</p>
                 </div>
 
                 {/* Total Cost & Delete */}
-                <div className="flex items-center justify-between pt-3 border-t border-stone-800/60">
+                <div className={`flex items-center justify-between pt-3 border-t ${theme === 'dark' ? 'border-stone-800/60' : 'border-stone-150'}`}>
                   <div>
-                    <span className="text-[10px] text-stone-400 uppercase font-semibold">Estimated Gross</span>
-                    <p className="font-mono font-extrabold text-white text-base">Ksh {inq.totalEstimated.toLocaleString()}</p>
+                    <span className={`text-[10px] uppercase font-bold ${theme === 'dark' ? 'text-stone-500' : 'text-stone-400'}`}>Estimated Gross</span>
+                    <p className={`font-mono font-extrabold text-sm sm:text-base ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Ksh {inq.totalEstimated.toLocaleString()}</p>
                   </div>
                   
                   <button
                     id={`delete-inquiry-btn-${inq.id}`}
                     onClick={() => handleDeleteInquiry(inq.id)}
-                    className="text-stone-400 hover:text-red-400 text-xs font-bold uppercase flex items-center gap-1.5 transition-colors p-1"
+                    className={`text-stone-400 hover:text-red-500 text-xs font-bold uppercase flex items-center gap-1.5 transition-colors p-1 cursor-pointer`}
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Cancel Proposal</span>

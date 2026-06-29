@@ -6,12 +6,11 @@ import {
   Sparkles, 
   Star, 
   ChevronRight, 
-  ShoppingBag, 
-  CheckCircle, 
-  HeartHandshake, 
-  BadgeDollarSign, 
-  ChefHat,
   Plus,
+  ChefHat,
+  BadgeDollarSign, 
+  HeartHandshake, 
+  CheckCircle,
   UtensilsCrossed
 } from 'lucide-react';
 import { MealItem } from '../types';
@@ -22,9 +21,10 @@ interface HomeViewProps {
   onOrderNow: () => void;
   onAddFoodToQuote: (item: MealItem) => void;
   selectedItemsCount: Record<string, number>;
+  theme?: 'dark' | 'light';
 }
 
-export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCount }: HomeViewProps) {
+export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCount, theme = 'dark' }: HomeViewProps) {
   const [activeCategory, setActiveCategory] = React.useState<'all' | 'meal' | 'snack' | 'beverage' | 'package'>('all');
 
   const filteredMeals = React.useMemo(() => {
@@ -33,10 +33,10 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
   }, [activeCategory]);
 
   return (
-    <div id="home-view-container" className="space-y-24 pb-20">
+    <div id="home-view-container" className="space-y-16 sm:space-y-24 pb-20">
       
       {/* 1. HERO SECTION WITH PROFESSIONAL CATERING BANNER */}
-      <section id="hero-section" className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden pt-16">
+      <section id="hero-section" className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden pt-16">
         {/* Banner Image Background */}
         <div className="absolute inset-0 z-0">
           <img
@@ -51,55 +51,55 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
         </div>
 
         {/* Content Box */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 bg-emerald-700/10 border border-emerald-500/30 px-4 py-1.5 rounded-full text-emerald-400 text-xs tracking-wider uppercase font-mono">
-            <Sparkles className="w-3.5 h-3.5" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8">
+          <div className="inline-flex items-center gap-2 bg-emerald-700/20 border border-emerald-500/40 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-emerald-400 text-[10px] sm:text-xs tracking-wider uppercase font-mono">
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>Your Trusted Healthy Catering Partner</span>
           </div>
 
-          <h1 id="hero-headline" className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight animate-fade-in">
+          <h1 id="hero-headline" className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
             Your Trusted Healthy Catering & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-emerald-500">
               Clean, Nutrient-Rich Food
             </span>
           </h1>
 
-          <p id="hero-slogan" className="max-w-2xl mx-auto text-stone-300 text-base sm:text-lg font-light leading-relaxed">
+          <p id="hero-slogan" className="max-w-2xl mx-auto text-stone-300 text-xs sm:text-sm md:text-base font-light leading-relaxed">
             Delivering the finest fresh, organic Kenyan delicacies prepared with elite hygienic controls. We craft exceptionally clean food to support your wellness lifestyle and inspire your guests at every milestone.
           </p>
 
-          <div id="hero-actions" className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div id="hero-actions" className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <button
               id="hero-order-button"
               onClick={onOrderNow}
-              className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest shadow-xl shadow-emerald-700/20 hover:shadow-emerald-700/40 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-600 text-white px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl shadow-emerald-700/20 hover:shadow-emerald-700/40 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-1.5"
             >
-              <UtensilsCrossed className="w-4 h-4 text-white" />
+              <UtensilsCrossed className="w-3.5 h-3.5 text-white" />
               <span>Configure Menu & Order</span>
             </button>
             <button
               id="hero-request-delivery-button"
               onClick={onOrderNow}
-              className="w-full sm:w-auto bg-stone-900/80 hover:bg-stone-800 border border-stone-700 hover:border-emerald-500/50 text-white hover:text-emerald-400 px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto bg-stone-900/85 hover:bg-stone-800 border border-stone-700 hover:border-emerald-500/50 text-white hover:text-emerald-400 px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-1.5 group"
             >
               <span>Request Delivery / Quote</span>
-              <ChevronRight className="w-4 h-4 text-stone-400 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+              <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
             </button>
           </div>
 
           {/* Quick trust metrics */}
-          <div id="hero-metrics" className="pt-10 grid grid-cols-3 gap-4 max-w-lg mx-auto border-t border-stone-800/40">
+          <div id="hero-metrics" className="pt-6 sm:pt-10 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto border-t border-stone-800/40">
             <div>
-              <p className="text-xl sm:text-2xl font-serif font-bold text-emerald-400">100%</p>
-              <p className="text-[10px] sm:text-xs text-stone-400 font-mono tracking-wider uppercase mt-1">Organic Sourced</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-emerald-400">100%</p>
+              <p className="text-[9px] sm:text-[10px] text-stone-450 font-mono tracking-wider uppercase mt-1">Organic Sourced</p>
             </div>
             <div className="border-x border-stone-800/40">
-              <p className="text-xl sm:text-2xl font-serif font-bold text-emerald-400">5 ★</p>
-              <p className="text-[10px] sm:text-xs text-stone-400 font-mono tracking-wider uppercase mt-1">Hygiene Rating</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-emerald-400">5 ★</p>
+              <p className="text-[9px] sm:text-[10px] text-stone-450 font-mono tracking-wider uppercase mt-1">Hygiene Rating</p>
             </div>
             <div>
-              <p className="text-xl sm:text-2xl font-serif font-bold text-emerald-400">12k+</p>
-              <p className="text-[10px] sm:text-xs text-stone-400 font-mono tracking-wider uppercase mt-1">Guests Nourished</p>
+              <p className="text-lg sm:text-2xl font-serif font-bold text-emerald-400">12k+</p>
+              <p className="text-[9px] sm:text-[10px] text-stone-450 font-mono tracking-wider uppercase mt-1">Guests Nourished</p>
             </div>
           </div>
         </div>
@@ -107,63 +107,85 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
 
       {/* 2. WELCOME SECTION */}
       <section id="welcome-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Narrative Text */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-stone-900 border border-stone-800 px-3.5 py-1 rounded-full text-stone-300 text-xs font-mono font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <div className="space-y-4 sm:space-y-6">
+            <div className={`inline-flex items-center gap-2 border px-3 py-1 rounded-full text-xs font-mono font-medium ${
+              theme === 'dark' 
+                ? 'bg-stone-900 border-stone-800 text-stone-300' 
+                : 'bg-stone-150 border-stone-250 text-stone-800'
+            }`}>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Welcome to Happy Belly Catering</span>
             </div>
             
-            <h2 id="welcome-title" className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h2 id="welcome-title" className={`font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight ${
+              theme === 'dark' ? 'text-white' : 'text-stone-900'
+            }`}>
               A Legacy of Culinary Innovation, Crisp Hygiene & Absolute Reliability
             </h2>
             
-            <p id="welcome-body-1" className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            <p id="welcome-body-1" className={`text-xs sm:text-base leading-relaxed ${
+              theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+            }`}>
               For over a decade, we have pioneered five-star catering structures that treat food not merely as fuel, but as an interactive, multisensory performance. We craft customizable gourmet menu cards designed to spark delight and build unforgettable moments for you and your guests.
             </p>
             
-            <p id="welcome-body-2" className="text-stone-400 text-sm leading-relaxed border-l-2 border-emerald-500 pl-4">
-              At Happy Belly, pristine hygiene guidelines and stringent security protocols govern our master-staging kitchens. We believe the path to absolute peace-of-mind at any major celebration rests equal parts on Michelin-quality taste and strict, clockwork logistics.
+            <p id="welcome-body-2" className={`text-xs sm:text-sm leading-relaxed border-l-2 border-emerald-500 pl-4 ${
+              theme === 'dark' ? 'text-stone-400' : 'text-stone-600'
+            }`}>
+              At Happy Belly, pristine hygiene guidelines and stringent security protocols govern our master-staging kitchens. We believe the path to absolute peace-of-mind at any celebration rests equal parts on Michelin-quality taste and strict, clockwork logistics.
             </p>
           </div>
 
           {/* Three pillars columns styled beautifully */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4 sm:gap-6">
             {/* Pillar 1: Quality */}
-            <div id="pillar-quality" className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl shadow-md hover:border-emerald-500/20 transition-all flex items-start gap-4">
-              <div className="bg-emerald-950/45 text-emerald-300 p-3 rounded-xl shrink-0 border border-emerald-900/40">
-                <Award className="w-6 h-6 stroke-[2]" />
+            <div id="pillar-quality" className={`p-4 sm:p-6 rounded-2xl border transition-all flex items-start gap-3.5 ${
+              theme === 'dark'
+                ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
+                : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm hover:shadow-md'
+            }`}>
+              <div className="bg-emerald-950/45 text-emerald-300 p-2.5 rounded-xl shrink-0 border border-emerald-900/40">
+                <Award className="w-5.5 h-5.5 stroke-[2]" />
               </div>
-              <div className="space-y-1.5">
-                <h3 className="font-serif text-lg font-bold text-white">Outstanding Quality</h3>
-                <p className="text-stone-400 text-xs sm:text-sm leading-relaxed">
+              <div className="space-y-1">
+                <h3 className={`font-serif text-sm sm:text-base font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Outstanding Quality</h3>
+                <p className={`text-[11px] sm:text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
                   Chef-vetted recipes using non-processed local ingredients, designed beautifully for custom culinary palettes.
                 </p>
               </div>
             </div>
 
             {/* Pillar 2: Hygiene */}
-            <div id="pillar-hygiene" className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl shadow-md hover:border-emerald-500/20 transition-all flex items-start gap-4">
-              <div className="bg-emerald-950/45 text-emerald-400 p-3 rounded-xl shrink-0 border border-emerald-800/35">
-                <ShieldCheck className="w-6 h-6 stroke-[2]" />
+            <div id="pillar-hygiene" className={`p-4 sm:p-6 rounded-2xl border transition-all flex items-start gap-3.5 ${
+              theme === 'dark'
+                ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
+                : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm hover:shadow-md'
+            }`}>
+              <div className="bg-emerald-950/45 text-emerald-400 p-2.5 rounded-xl shrink-0 border border-emerald-800/35">
+                <ShieldCheck className="w-5.5 h-5.5 stroke-[2]" />
               </div>
-              <div className="space-y-1.5">
-                <h3 className="font-serif text-lg font-bold text-white">Pristine Food Hygiene</h3>
-                <p className="text-stone-400 text-xs sm:text-sm leading-relaxed">
+              <div className="space-y-1">
+                <h3 className={`font-serif text-sm sm:text-base font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Pristine Food Hygiene</h3>
+                <p className={`text-[11px] sm:text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
                   Sterilized prep suites, sanitization controls, and direct temperature-monitored sealed hot transit.
                 </p>
               </div>
             </div>
 
             {/* Pillar 3: Reliability */}
-            <div id="pillar-reliability" className="bg-[#131517] border border-stone-800/80 p-6 rounded-2xl shadow-md hover:border-emerald-500/20 transition-all flex items-start gap-4">
-              <div className="bg-indigo-950/45 text-indigo-400 p-3 rounded-xl shrink-0 border border-indigo-850/35">
-                <Truck className="w-6 h-6 stroke-[2]" />
+            <div id="pillar-reliability" className={`p-4 sm:p-6 rounded-2xl border transition-all flex items-start gap-3.5 ${
+              theme === 'dark'
+                ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
+                : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm hover:shadow-md'
+            }`}>
+              <div className="bg-indigo-950/45 text-indigo-400 p-2.5 rounded-xl shrink-0 border border-indigo-850/35">
+                <Truck className="w-5.5 h-5.5 stroke-[2]" />
               </div>
-              <div className="space-y-1.5">
-                <h3 className="font-serif text-lg font-bold text-white">Uncompromising Reliability</h3>
-                <p className="text-stone-400 text-xs sm:text-sm leading-relaxed">
+              <div className="space-y-1">
+                <h3 className={`font-serif text-sm sm:text-base font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Uncompromising Reliability</h3>
+                <p className={`text-[11px] sm:text-xs leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
                   Precision timeline staging, backup courier protocols, and dedicated event supervisors on call.
                 </p>
               </div>
@@ -173,42 +195,55 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
       </section>
 
       {/* 3. WHY CHOOSE US */}
-      <section id="why-choose-us-section" className="bg-stone-900 text-white py-20 relative overflow-hidden">
+      <section id="why-choose-us-section" className={`py-16 sm:py-20 relative overflow-hidden transition-colors duration-300 ${
+        theme === 'dark' ? 'bg-stone-900/95 text-white' : 'bg-stone-100 text-stone-900'
+      }`}>
         {/* Abstract design elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl -mr-32 -mt-32" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full filter blur-3xl -ml-32 -mb-32" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <p className="text-emerald-400 text-xs font-mono tracking-widest uppercase">The Happy Belly Standard</p>
-            <h2 id="why-choose-us-title" className="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+            <p className="text-emerald-500 text-xs font-mono tracking-widest uppercase font-bold">The Happy Belly Standard</p>
+            <h2 id="why-choose-us-title" className="font-serif text-2xl sm:text-4xl font-bold tracking-tight">
               Why Happy Belly Catering Stands Apart
             </h2>
-            <p id="why-choose-us-subtitle" className="text-stone-400 text-sm sm:text-base leading-relaxed">
+            <p id="why-choose-us-subtitle" className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
               Our holistic operations checklist is designed to streamline event organization and provide premium taste parameters affordably.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {WHY_CHOOSE_US_ITEMS.map((item, idx) => {
-              // Icon mapping based on index or title
               return (
                 <div 
                   key={item.id}
                   id={`why-card-${idx}`}
-                  className="bg-stone-950/80 border border-stone-800 p-8 rounded-2xl space-y-4 hover:border-emerald-500/30 transition-all group hover:shadow-lg"
+                  className={`p-6 sm:p-8 rounded-2xl space-y-4 border transition-all group hover:shadow-lg ${
+                    theme === 'dark'
+                      ? 'bg-stone-950/80 border-stone-800 hover:border-emerald-500/30'
+                      : 'bg-white border-stone-200 hover:border-emerald-500/30 shadow-sm'
+                  }`}
                 >
-                  <div className="inline-flex p-3 rounded-xl bg-stone-900 text-emerald-450 group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                    {idx === 0 && <CheckCircle className="w-6 h-6 stroke-[2]" />}
-                    {idx === 1 && <ChefHat className="w-6 h-6 stroke-[2]" />}
-                    {idx === 2 && <Truck className="w-6 h-6 stroke-[2]" />}
-                    {idx === 3 && <BadgeDollarSign className="w-6 h-6 stroke-[2]" />}
-                    {idx === 4 && <HeartHandshake className="w-6 h-6 stroke-[2]" />}
+                  <div className={`inline-flex p-2.5 rounded-xl transition-all ${
+                    theme === 'dark'
+                      ? 'bg-stone-900 text-emerald-400 group-hover:bg-emerald-700 group-hover:text-white'
+                      : 'bg-stone-100 text-emerald-600 group-hover:bg-emerald-700 group-hover:text-white'
+                  }`}>
+                    {idx === 0 && <CheckCircle className="w-5.5 h-5.5 stroke-[2]" />}
+                    {idx === 1 && <ChefHat className="w-5.5 h-5.5 stroke-[2]" />}
+                    {idx === 2 && <Truck className="w-5.5 h-5.5 stroke-[2]" />}
+                    {idx === 3 && <BadgeDollarSign className="w-5.5 h-5.5 stroke-[2]" />}
+                    {idx === 4 && <HeartHandshake className="w-5.5 h-5.5 stroke-[2]" />}
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  <h3 className={`font-serif text-base sm:text-lg font-bold group-hover:text-emerald-500 transition-colors ${
+                    theme === 'dark' ? 'text-white' : 'text-stone-900'
+                  }`}>
                     {item.title}
                   </h3>
-                  <p className="text-stone-400 text-sm leading-relaxed">
+                  <p className={`text-xs sm:text-sm leading-relaxed ${
+                    theme === 'dark' ? 'text-stone-400' : 'text-stone-600'
+                  }`}>
                     {item.description}
                   </p>
                 </div>
@@ -220,45 +255,57 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
 
       {/* 4. FEATURED PRODUCTS (THE GASTRONOMIC MENU) */}
       <section id="featured-products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-4 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 p-1 px-3 bg-emerald-950/40 text-emerald-300 rounded-full text-xs font-medium border border-emerald-900/40">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="space-y-3 max-w-xl">
+            <div className={`inline-flex items-center gap-1.5 p-1 px-3 rounded-full text-xs font-medium border ${
+              theme === 'dark' 
+                ? 'bg-emerald-950/40 text-emerald-300 border-emerald-900/40' 
+                : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+            }`}>
               <CookingIndicator />
               <span>Explore Gastronomic Creations</span>
             </div>
-            <h2 id="featured-products-title" className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h2 id="featured-products-title" className={`font-serif text-2xl sm:text-4xl font-bold tracking-tight ${
+              theme === 'dark' ? 'text-white' : 'text-stone-900'
+            }`}>
               Curated Masterpiece Catalogues
             </h2>
-            <p className="text-stone-400 text-sm sm:text-base leading-relaxed">
+            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
               Browse our seasonal culinary menus. Click on items to add them directly to your Custom Event Quote & Delivery inquiry checklist!
             </p>
           </div>
 
           {/* Tab Filter */}
-          <div id="category-tabs" className="flex flex-wrap items-center gap-2 bg-stone-900 border border-stone-800/80 p-1.5 rounded-2xl self-start md:self-end">
+          <div id="category-tabs" className={`flex flex-wrap items-center gap-1 p-1 rounded-2xl self-start md:self-end border ${
+            theme === 'dark'
+              ? 'bg-stone-900 border-stone-800/80'
+              : 'bg-stone-100 border-stone-250'
+          }`}>
             {(['all', 'meal', 'snack', 'beverage', 'package'] as const).map((cat) => (
               <button
                 key={cat}
                 id={`tab-btn-${cat}`}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all ${
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat
                     ? 'bg-emerald-700 text-white shadow-sm'
-                    : 'text-stone-400 hover:text-white'
+                    : theme === 'dark'
+                      ? 'text-stone-400 hover:text-white'
+                      : 'text-stone-600 hover:text-stone-900'
                 }`}
               >
                 {cat === 'all' && 'All Food'}
                 {cat === 'meal' && 'Popular Meals'}
                 {cat === 'snack' && 'Snacks'}
                 {cat === 'beverage' && 'Beverages'}
-                {cat === 'package' && 'Corporate Packages'}
+                {cat === 'package' && 'Packages'}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div id="products-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Products Grid (Optimized for Mobile side-by-side) */}
+        <div id="products-grid" className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
           <AnimatePresence mode="popLayout">
             {filteredMeals.map((meal) => {
               const countInCart = selectedItemsCount[meal.id] || 0;
@@ -271,10 +318,14 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-[#131517] border border-stone-800/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all flex flex-col group h-full"
+                  className={`border rounded-2xl overflow-hidden transition-all flex flex-col group h-full hover:shadow-lg ${
+                    theme === 'dark'
+                      ? 'bg-[#131517] border-stone-800/80 hover:-translate-y-0.5 shadow-sm'
+                      : 'bg-white border-stone-200 hover:-translate-y-0.5 shadow-sm'
+                  }`}
                 >
                   {/* Photo Staging */}
-                  <div className="relative h-44 sm:h-48 overflow-hidden bg-stone-900">
+                  <div className="relative h-28 sm:h-44 md:h-48 overflow-hidden bg-stone-900">
                     <img
                       src={meal.imageUrl}
                       alt={meal.name}
@@ -284,16 +335,16 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     />
                     
                     {/* Dark gradient overlap */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/45 via-transparent to-transparent" />
 
                     {/* Left top features badges */}
-                    <div className="absolute top-3 left-3 flex flex-col gap-1">
+                    <div className="absolute top-2 left-2 flex flex-col gap-1">
                       {meal.popular && (
-                        <span className="bg-emerald-600 text-white text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
-                          Popular Choice
+                        <span className="bg-emerald-600 text-white text-[7px] sm:text-[9px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 sm:px-2 rounded-full shadow-sm">
+                          Popular
                         </span>
                       )}
-                      <span className="bg-stone-900/80 backdrop-blur-sm text-stone-200 text-[8px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">
+                      <span className="bg-stone-900/85 backdrop-blur-sm text-stone-200 text-[6px] sm:text-[8px] font-semibold uppercase tracking-widest px-1.5 py-0.5 sm:px-2 rounded-full">
                         {meal.category === 'meal' && 'ENTRÉE'}
                         {meal.category === 'snack' && 'HORS D’OEUVRE'}
                         {meal.category === 'beverage' && 'ELIXIR'}
@@ -302,35 +353,45 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     </div>
 
                     {/* Price tag bottom-right overlay */}
-                    <div className="absolute bottom-3 right-3 bg-stone-900/95 backdrop-blur-sm shadow-md px-2.5 py-1 rounded-lg border border-stone-800 text-[11px]">
-                      <span className="text-[10px] text-stone-400 font-mono">From </span>
-                      <span className="text-white font-mono font-bold">
+                    <div className="absolute bottom-2 right-2 bg-stone-900/95 backdrop-blur-sm shadow-md px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg border border-stone-800 text-[8px] sm:text-[11px] text-white">
+                      <span className="text-stone-400 font-mono hidden sm:inline">From </span>
+                      <span className="font-mono font-bold">
                         Ksh {meal.price.toLocaleString()}
                       </span>
-                      <span className="text-[9px] text-stone-400 font-sans">
+                      <span className="text-[7px] sm:text-[9px] text-stone-400 font-sans">
                         {meal.category === 'package' ? '/head' : '/person'}
                       </span>
                     </div>
                   </div>
 
                   {/* Core Attributes */}
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <div className="p-2.5 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
                     <div className="space-y-1">
-                      <h3 className="font-serif text-base font-bold text-stone-100 group-hover:text-emerald-400 transition-colors">
+                      <h3 className={`font-serif text-xs sm:text-base font-bold group-hover:text-emerald-500 transition-colors line-clamp-1 sm:line-clamp-none ${
+                        theme === 'dark' ? 'text-stone-100' : 'text-stone-900'
+                      }`}>
                         {meal.name}
                       </h3>
-                      <p className="text-stone-400 text-slate-400 text-xs leading-relaxed line-clamp-3">
+                      <p className={`text-[10px] sm:text-xs leading-relaxed line-clamp-2 sm:line-clamp-3 ${
+                        theme === 'dark' ? 'text-stone-400' : 'text-stone-600'
+                      }`}>
                         {meal.description}
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-2.5 border-t border-stone-800">
+                    <div className={`space-y-2 sm:space-y-3 pt-1.5 sm:pt-2.5 border-t ${
+                      theme === 'dark' ? 'border-stone-800' : 'border-stone-150'
+                    }`}>
                       {/* Dietary / Feature bullet list */}
                       <div className="flex flex-wrap gap-1">
-                        {meal.features.map((feat, i) => (
+                        {meal.features.slice(0, 2).map((feat, i) => (
                           <span 
                             key={i} 
-                            className="bg-stone-900 border border-stone-800 text-stone-300 text-[9px] px-1.5 py-0.5 rounded font-medium"
+                            className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-medium ${
+                              theme === 'dark'
+                                ? 'bg-stone-900 border border-stone-800 text-stone-300'
+                                : 'bg-stone-100 border border-stone-200 text-stone-700'
+                            }`}
                           >
                             {feat}
                           </span>
@@ -341,14 +402,16 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                       <button
                         id={`add-to-quote-btn-${meal.id}`}
                         onClick={() => onAddFoodToQuote(meal)}
-                        className={`w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
+                        className={`w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 px-1.5 sm:px-3 rounded-lg text-[9px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer ${
                           countInCart > 0
-                            ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-800/40'
-                            : 'bg-stone-900 hover:bg-emerald-700 hover:text-white border border-stone-800 hover:border-emerald-600 text-stone-300'
+                            ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40'
+                            : theme === 'dark'
+                              ? 'bg-stone-900 hover:bg-emerald-700 hover:text-white border border-stone-800 hover:border-emerald-600 text-stone-300'
+                              : 'bg-stone-100 hover:bg-emerald-700 hover:text-white border border-stone-200 hover:border-emerald-600 text-stone-700'
                         }`}
                       >
-                        <Plus className="w-3 h-3" />
-                        <span>Add To Query List {countInCart > 0 && `(${countInCart})`}</span>
+                        <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
+                        <span className="truncate">Add to Quote {countInCart > 0 && `(${countInCart})`}</span>
                       </button>
                     </div>
                   </div>
@@ -360,46 +423,60 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
       </section>
 
       {/* 5. CUSTOMER TESTIMONIALS */}
-      <section id="testimonials-section" className="bg-stone-950/30 py-12 border-y border-stone-900/80">
+      <section id="testimonials-section" className={`py-12 sm:py-16 border-y ${
+        theme === 'dark' ? 'bg-stone-950/30 border-stone-900/80' : 'bg-stone-100/45 border-stone-200'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-            <p className="text-emerald-400 text-xs font-mono tracking-widest uppercase">Gastronic Appreciations</p>
-            <h2 id="testimonials-title" className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 sm:mb-16">
+            <p className="text-emerald-500 text-xs font-mono tracking-widest uppercase font-bold">Gastronomic Appreciations</p>
+            <h2 id="testimonials-title" className={`font-serif text-2xl sm:text-4xl font-bold tracking-tight ${
+              theme === 'dark' ? 'text-white' : 'text-stone-900'
+            }`}>
               Nourishing Happy Belly Events
             </h2>
-            <p className="text-stone-400 text-sm leading-relaxed">
+            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-600'}`}>
               Real stories and rated approvals from wedding organizers, corporate clients, and private culinary lovers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((testi, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
+            {TESTIMONIALS.map((testi) => (
               <div 
                 key={testi.id}
                 id={`testimonial-card-${testi.id}`}
-                className="bg-[#131517] border border-stone-800/80 p-8 rounded-2xl shadow-md hover:border-emerald-500/20 transition-all flex flex-col justify-between space-y-6"
+                className={`p-6 sm:p-8 rounded-2xl border transition-all flex flex-col justify-between space-y-4 sm:space-y-6 ${
+                  theme === 'dark'
+                    ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
+                    : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
+                }`}
               >
                 <div className="space-y-3">
                   {/* Rating Stars */}
                   <div className="flex items-center gap-1 text-emerald-500">
                     {[...Array(testi.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-emerald-500 stroke-none" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-emerald-500 stroke-none" />
                     ))}
                   </div>
                   {/* Quote text */}
-                  <p className="text-stone-300 text-xs sm:text-sm leading-relaxed italic">
+                  <p className={`text-xs sm:text-sm leading-relaxed italic ${
+                    theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
+                  }`}>
                     "{testi.text}"
                   </p>
                 </div>
 
                 {/* Author profile */}
-                <div className="flex items-center gap-3 pt-4 border-t border-stone-800/60">
-                  <div className="w-10 h-10 rounded-full bg-stone-900 border border-stone-805 text-stone-300 flex items-center justify-center font-serif font-bold text-sm">
+                <div className={`flex items-center gap-3 pt-4 border-t ${
+                  theme === 'dark' ? 'border-stone-800/60' : 'border-stone-150'
+                }`}>
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-serif font-bold text-xs sm:text-sm ${
+                    theme === 'dark' ? 'bg-stone-900 border border-stone-800 text-stone-300' : 'bg-stone-100 border border-stone-250 text-stone-700'
+                  }`}>
                     {testi.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-xs sm:text-sm">{testi.name}</h4>
-                    <p className="text-stone-500 text-[10px] font-mono tracking-tight mt-0.5">{testi.role}</p>
+                    <h4 className={`font-bold text-xs sm:text-sm ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>{testi.name}</h4>
+                    <p className={`text-[10px] font-mono tracking-tight mt-0.5 ${theme === 'dark' ? 'text-stone-500' : 'text-stone-450'}`}>{testi.role}</p>
                   </div>
                 </div>
               </div>
