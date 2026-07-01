@@ -90,30 +90,30 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
       <section id="vision-mission-section" className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6">
         
         {/* VISION CARD */}
-        <div id="vision-card" className={`p-4 sm:p-6 md:p-8 rounded-2xl shadow-md border flex flex-col justify-between space-y-6 relative overflow-hidden group ${
+        <div id="vision-card" className={`p-4 sm:p-5 md:p-6 rounded-xl shadow-md border flex flex-col justify-between space-y-4 relative overflow-hidden group ${
           theme === 'dark'
             ? 'bg-stone-950 text-white border-stone-800'
             : 'bg-white text-stone-900 border-stone-200'
         }`}>
           <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-emerald-500/5 rounded-full filter blur-xl group-hover:bg-emerald-500/10 transition-colors" />
           
-          <div className="space-y-4 relative z-10">
-            <div className={`p-3.5 rounded-2xl w-fit ${
+          <div className="space-y-3 relative z-10">
+            <div className={`p-2.5 rounded-xl w-fit ${
               theme === 'dark' ? 'bg-stone-900 border border-stone-800 text-emerald-400' : 'bg-stone-100 border border-stone-250 text-emerald-600'
             }`}>
-              <Eye className="w-6 h-6 stroke-[2]" />
+              <Eye className="w-5.5 h-5.5 stroke-[2]" />
             </div>
             
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold">Our Vision</h3>
+            <h3 className="font-serif text-xl sm:text-2xl font-bold">Our Vision</h3>
             
-            <p className={`text-xs sm:text-base leading-relaxed font-light italic border-l-2 border-emerald-600 pl-4 py-1 ${
+            <p className={`text-xs sm:text-sm leading-relaxed font-light italic border-l-2 border-emerald-600 pl-4 py-1 ${
               theme === 'dark' ? 'text-stone-300' : 'text-stone-700'
             }`}>
               "To become the leading provider of high-quality catering services while maintaining exceptional customer satisfaction."
             </p>
           </div>
           
-          <p className={`text-xs sm:text-sm leading-relaxed relative z-10 pt-2 border-t ${
+          <p className={`text-xs sm:text-[13px] leading-relaxed relative z-10 pt-2 border-t ${
             theme === 'dark' ? 'text-stone-400 border-stone-800/60' : 'text-stone-600 border-stone-150'
           }`}>
             We actively work to elevate hospitality parameters daily, establishing eco-friendly sourcing and cutting-edge prep standards that set benchmark parameters nationwide.
@@ -121,20 +121,20 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
         </div>
 
         {/* MISSION CARD */}
-        <div id="mission-card" className={`p-4 sm:p-6 md:p-8 rounded-2xl shadow-md border flex flex-col justify-between space-y-6 group ${
+        <div id="mission-card" className={`p-4 sm:p-5 md:p-6 rounded-xl shadow-md border flex flex-col justify-between space-y-4 group ${
           theme === 'dark'
             ? 'bg-[#131517] border-stone-800/80 text-white'
             : 'bg-white border-stone-200 text-stone-900'
         }`}>
-          <div className="space-y-4">
-            <div className={`p-3.5 rounded-2xl w-fit border ${
+          <div className="space-y-3">
+            <div className={`p-2.5 rounded-xl w-fit border ${
               theme === 'dark' ? 'bg-emerald-950/45 text-emerald-300 border-emerald-900/40' : 'bg-emerald-50 text-emerald-700 border-emerald-200'
             }`}>
-              <Target className="w-6 h-6 stroke-[2]" />
+              <Target className="w-5.5 h-5.5 stroke-[2]" />
             </div>
             
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold">Our Mission</h3>
-            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-stone-700'}`}>
+            <h3 className="font-serif text-xl sm:text-2xl font-bold">Our Mission</h3>
+            <p className={`text-xs sm:text-[13px] leading-relaxed ${theme === 'dark' ? 'text-stone-300' : 'text-stone-700'}`}>
               We pledge to provide trusted healthy, clean, and organic culinary creations customized for all event checklists, deploying rigid KeBS and Ministry of Health clean food guidelines while remaining transparently priced.
             </p>
           </div>
@@ -171,14 +171,16 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* Chef 1 */}
-          <div id="chef-card-1" className={`p-4 sm:p-6 rounded-2xl text-center space-y-3.5 border transition-all ${
+          <div id="chef-card-1" className={`p-4 sm:p-5 rounded-xl text-center space-y-2.5 border transition-all ${
             theme === 'dark'
               ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20'
               : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
           }`}>
-            <div className="w-24 h-24 rounded-full bg-stone-900 border-2 border-emerald-500/30 overflow-hidden mx-auto">
+            <div className={`w-20 h-20 rounded-full border-2 border-emerald-500/30 overflow-hidden mx-auto ${
+              theme === 'dark' ? 'bg-stone-900' : 'bg-stone-100'
+            }`}>
               <img 
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80" 
                 alt="Chef Julian Vane" 
@@ -187,21 +189,23 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
               />
             </div>
             <div>
-              <h3 className={`font-serif text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Julian Vane</h3>
-              <p className="text-emerald-500 text-xs font-mono font-bold">Co-Founder & Culinary Director</p>
+              <h3 className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Julian Vane</h3>
+              <p className="text-emerald-500 text-[11px] sm:text-xs font-mono font-bold">Co-Founder & Culinary Director</p>
             </div>
-            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-650'}`}>
+            <p className={`text-xs sm:text-[13px] leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-650'}`}>
               With 18 years of experience spearheading dining for Luxury Resorts, Julian designs recipes that prioritize fine ingredients and clean pairings.
             </p>
           </div>
 
           {/* Chef 2 */}
-          <div id="chef-card-2" className={`p-4 sm:p-6 rounded-2xl text-center space-y-3.5 border transition-all ${
+          <div id="chef-card-2" className={`p-4 sm:p-5 rounded-xl text-center space-y-2.5 border transition-all ${
             theme === 'dark'
               ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20'
               : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
           }`}>
-            <div className="w-24 h-24 rounded-full bg-stone-900 border-2 border-emerald-500/30 overflow-hidden mx-auto">
+            <div className={`w-20 h-20 rounded-full border-2 border-emerald-500/30 overflow-hidden mx-auto ${
+              theme === 'dark' ? 'bg-stone-900' : 'bg-stone-100'
+            }`}>
               <img 
                 src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&auto=format&fit=crop&q=80" 
                 alt="Chef Maria Gomez" 
@@ -210,10 +214,10 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
               />
             </div>
             <div>
-              <h3 className={`font-serif text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Maria Gomez</h3>
-              <p className="text-emerald-500 text-xs font-mono font-bold">Head Pastry & Snack Crafter</p>
+              <h3 className={`font-serif text-base sm:text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-stone-900'}`}>Maria Gomez</h3>
+              <p className="text-emerald-500 text-[11px] sm:text-xs font-mono font-bold">Head Pastry & Snack Crafter</p>
             </div>
-            <p className={`text-xs sm:text-sm leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-650'}`}>
+            <p className={`text-xs sm:text-[13px] leading-relaxed ${theme === 'dark' ? 'text-stone-400' : 'text-stone-650'}`}>
                An expert in high-society finger foods and bespoke artisan tarts, Maria ensures our dessert stations are miniature works of fine visual art.
             </p>
           </div>
@@ -221,17 +225,32 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
       </section>
 
       {/* Inline CTA block */}
-      <section id="about-cta-block" className="bg-emerald-900/80 border border-emerald-800/50 p-6 sm:p-12 rounded-2xl sm:rounded-3xl text-center text-white space-y-6 max-w-4xl mx-auto shadow-xl">
-        <h2 className="font-serif text-2xl sm:text-3.5xl font-bold tracking-tight">
+      <section 
+        id="about-cta-block" 
+        className={`p-6 sm:p-12 rounded-2xl sm:rounded-3xl text-center space-y-6 max-w-4xl mx-auto shadow-xl border transition-all ${
+          theme === 'dark'
+            ? 'bg-emerald-900/80 border-emerald-800/50 text-white'
+            : 'bg-emerald-50/90 border-emerald-200/80 text-emerald-950 shadow-md'
+        }`}
+      >
+        <h2 className={`font-serif text-2xl sm:text-3.5xl font-bold tracking-tight ${
+          theme === 'dark' ? 'text-white' : 'text-emerald-900'
+        }`}>
           Ready to Host a Happy Belly Dining Experience?
         </h2>
-        <p className="max-w-2xl mx-auto text-emerald-100 text-xs sm:text-sm leading-relaxed font-light">
+        <p className={`max-w-2xl mx-auto text-xs sm:text-sm leading-relaxed font-light ${
+          theme === 'dark' ? 'text-emerald-100' : 'text-emerald-850'
+        }`}>
           Get in touch with our operations concierge or try our interactive pricing calculator to receive a completely customized catering quotation instantly.
         </p>
         <button
           id="about-cta-booking-btn"
           onClick={onOpenBooking}
-          className="bg-white hover:bg-stone-100 text-emerald-800 font-bold px-8 py-3.5 rounded-full text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-lg cursor-pointer"
+          className={`font-bold px-8 py-3.5 rounded-full text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-lg cursor-pointer ${
+            theme === 'dark'
+              ? 'bg-white hover:bg-stone-100 text-emerald-800'
+              : 'bg-emerald-700 hover:bg-emerald-600 text-white'
+          }`}
         >
           Access Interactive Quote Engine
         </button>

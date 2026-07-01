@@ -217,7 +217,7 @@ export default function BookingInquiryView({
         <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-6 sm:space-y-8">
           
           {/* STEP 1: CONCIERGE EVENT SETUP */}
-          <div className={`border rounded-2xl p-3.5 sm:p-6 md:p-8 shadow-md space-y-5 sm:space-y-6 ${
+          <div className={`border rounded-xl p-3 sm:p-5 md:p-6 shadow-sm space-y-4 sm:space-y-5 ${
             theme === 'dark' 
               ? 'bg-[#131517] border-stone-800/80 text-white' 
               : 'bg-white border-stone-200 text-stone-900'
@@ -334,7 +334,7 @@ export default function BookingInquiryView({
           </div>
 
           {/* STEP 2: SELECTED DISHES STAGING CHECKS */}
-          <div className={`border rounded-2xl p-3.5 sm:p-6 md:p-8 shadow-md space-y-5 sm:space-y-6 ${
+          <div className={`border rounded-xl p-3 sm:p-5 md:p-6 shadow-sm space-y-4 sm:space-y-5 ${
             theme === 'dark' 
               ? 'bg-[#131517] border-stone-800/80 text-white' 
               : 'bg-white border-stone-200 text-stone-900'
@@ -453,7 +453,7 @@ export default function BookingInquiryView({
           </div>
 
           {/* STEP 3: CONTACT & LOGISTICS INFORMATION */}
-          <div className={`border rounded-2xl p-3.5 sm:p-6 md:p-8 shadow-md space-y-5 sm:space-y-6 ${
+          <div className={`border rounded-xl p-3 sm:p-5 md:p-6 shadow-sm space-y-4 sm:space-y-5 ${
             theme === 'dark' 
               ? 'bg-[#131517] border-stone-800/80 text-white' 
               : 'bg-white border-stone-200 text-stone-900'
@@ -616,10 +616,10 @@ export default function BookingInquiryView({
 
         {/* RIGHT 5 COLS: LIVE ESTIMATED INVOICE */}
         <div className="lg:col-span-5 space-y-6">
-          <div className={`rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl border space-y-5 sm:space-y-6 relative overflow-hidden transition-all ${
+          <div className={`rounded-xl p-3 sm:p-5 md:p-6 shadow-md border space-y-4 sm:space-y-5 relative overflow-hidden transition-all ${
             theme === 'dark'
               ? 'bg-stone-900 border-stone-800 text-white'
-              : 'bg-white border-stone-250 text-stone-900 shadow-xl'
+              : 'bg-white border-stone-250 text-stone-900 shadow-md'
           }`}>
             {/* Stamp design */}
             <div className={`absolute top-4 right-4 select-none opacity-10 pointer-events-none ${theme === 'dark' ? 'text-stone-800' : 'text-stone-300'}`}>
@@ -747,7 +747,7 @@ export default function BookingInquiryView({
               <div 
                 key={inq.id}
                 id={`submitted-card-${inq.id}`}
-                className={`p-4 sm:p-6 rounded-2xl shadow-md border transition-all flex flex-col justify-between space-y-3.5 sm:space-y-4 ${
+                className={`p-4 rounded-xl shadow-md border transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
                   theme === 'dark'
                     ? 'bg-[#131517] border-stone-800/80 text-white hover:border-emerald-500/20'
                     : 'bg-white border-stone-200 text-stone-900 hover:border-emerald-500/20'

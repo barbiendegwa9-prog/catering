@@ -54,6 +54,20 @@ export default function App() {
     document.title = title;
   }, [currentTab]);
 
+  // Sync theme with document.documentElement for global style overrides
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+      root.classList.remove('theme-dark');
+      root.style.colorScheme = 'light';
+    } else {
+      root.classList.add('theme-dark');
+      root.classList.remove('theme-light');
+      root.style.colorScheme = 'dark';
+    }
+  }, [theme]);
+
   const saveCartToStorage = (cart: Record<string, number>) => {
     setSelectedCart(cart);
     localStorage.setItem('happy_belly_catering_cart', JSON.stringify(cart));

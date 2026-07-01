@@ -219,13 +219,13 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                 <div 
                   key={item.id}
                   id={`why-card-${idx}`}
-                  className={`p-4 sm:p-6 md:p-8 rounded-2xl space-y-3 sm:space-y-4 border transition-all group hover:shadow-lg ${
+                  className={`p-4 sm:p-5 md:p-6 rounded-xl space-y-2 sm:space-y-3 border transition-all group hover:shadow-lg ${
                     theme === 'dark'
                       ? 'bg-stone-950/80 border-stone-800 hover:border-emerald-500/30'
                       : 'bg-white border-stone-200 hover:border-emerald-500/30 shadow-sm'
                   }`}
                 >
-                  <div className={`inline-flex p-2.5 rounded-xl transition-all ${
+                  <div className={`inline-flex p-2 rounded-lg transition-all ${
                     theme === 'dark'
                       ? 'bg-stone-900 text-emerald-400 group-hover:bg-emerald-700 group-hover:text-white'
                       : 'bg-stone-100 text-emerald-600 group-hover:bg-emerald-700 group-hover:text-white'
@@ -304,8 +304,8 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
           </div>
         </div>
 
-        {/* Products Grid (Optimized for Mobile side-by-side) */}
-        <div id="products-grid" className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+        {/* Products Grid (Optimized for Compact Catalog View) */}
+        <div id="products-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
           <AnimatePresence mode="popLayout">
             {filteredMeals.map((meal) => {
               const countInCart = selectedItemsCount[meal.id] || 0;
@@ -318,14 +318,14 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25 }}
-                  className={`border rounded-2xl overflow-hidden transition-all flex flex-col group h-full hover:shadow-lg ${
+                  className={`border rounded-xl overflow-hidden transition-all flex flex-col group h-full hover:shadow-md ${
                     theme === 'dark'
                       ? 'bg-[#131517] border-stone-800/80 hover:-translate-y-0.5 shadow-sm'
                       : 'bg-white border-stone-200 hover:-translate-y-0.5 shadow-sm'
                   }`}
                 >
                   {/* Photo Staging */}
-                  <div className="relative h-24 sm:h-40 md:h-48 overflow-hidden bg-stone-900">
+                  <div className={`relative h-20 sm:h-24 md:h-28 overflow-hidden ${theme === 'dark' ? 'bg-stone-900' : 'bg-stone-100'}`}>
                     <img
                       src={meal.imageUrl}
                       alt={meal.name}
@@ -338,13 +338,13 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/45 via-transparent to-transparent" />
 
                     {/* Left top features badges */}
-                    <div className="absolute top-2 left-2 flex flex-col gap-1">
+                    <div className="absolute top-1.5 left-1.5 flex flex-col gap-0.5">
                       {meal.popular && (
-                        <span className="bg-emerald-600 text-white text-[7px] sm:text-[9px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 sm:px-2 rounded-full shadow-sm">
+                        <span className="bg-emerald-600 text-white text-[6px] sm:text-[7.5px] font-extrabold uppercase tracking-widest px-1 py-0.5 sm:px-1.5 rounded shadow-sm">
                           Popular
                         </span>
                       )}
-                      <span className="bg-stone-900/85 backdrop-blur-sm text-stone-200 text-[6px] sm:text-[8px] font-semibold uppercase tracking-widest px-1.5 py-0.5 sm:px-2 rounded-full">
+                      <span className="bg-stone-900/85 backdrop-blur-sm text-stone-200 text-[5px] sm:text-[6.5px] font-semibold uppercase tracking-widest px-1 py-0.5 sm:px-1.5 rounded">
                         {meal.category === 'meal' && 'ENTRÉE'}
                         {meal.category === 'snack' && 'HORS D’OEUVRE'}
                         {meal.category === 'beverage' && 'ELIXIR'}
@@ -353,41 +353,41 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                     </div>
 
                     {/* Price tag bottom-right overlay */}
-                    <div className="absolute bottom-2 right-2 bg-stone-900/95 backdrop-blur-sm shadow-md px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg border border-stone-800 text-[8px] sm:text-[11px] text-white">
+                    <div className="absolute bottom-1.5 right-1.5 bg-stone-900/95 backdrop-blur-sm shadow-md px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded border border-stone-800 text-[6.5px] sm:text-[9px] text-white">
                       <span className="text-stone-400 font-mono hidden sm:inline">From </span>
                       <span className="font-mono font-bold">
                         Ksh {meal.price.toLocaleString()}
                       </span>
-                      <span className="text-[7px] sm:text-[9px] text-stone-400 font-sans">
+                      <span className="text-[5.5px] sm:text-[7.5px] text-stone-400 font-sans">
                         {meal.category === 'package' ? '/head' : '/person'}
                       </span>
                     </div>
                   </div>
 
                   {/* Core Attributes */}
-                  <div className="p-2 sm:p-4 md:p-5 flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-3">
-                    <div className="space-y-1">
-                      <h3 className={`font-serif text-xs sm:text-base font-bold group-hover:text-emerald-500 transition-colors line-clamp-1 sm:line-clamp-none ${
+                  <div className="p-1.5 sm:p-2.5 flex-1 flex flex-col justify-between space-y-1 sm:space-y-1.5">
+                    <div className="space-y-0.5">
+                      <h3 className={`font-serif text-[10px] sm:text-[12px] md:text-sm font-bold group-hover:text-emerald-500 transition-colors line-clamp-1 ${
                         theme === 'dark' ? 'text-stone-100' : 'text-stone-900'
                       }`}>
                         {meal.name}
                       </h3>
-                      <p className={`text-[10px] sm:text-xs leading-relaxed line-clamp-2 sm:line-clamp-3 ${
+                      <p className={`text-[8.5px] sm:text-[10px] leading-snug line-clamp-1 sm:line-clamp-2 ${
                         theme === 'dark' ? 'text-stone-400' : 'text-stone-600'
                       }`}>
                         {meal.description}
                       </p>
                     </div>
 
-                    <div className={`space-y-2 sm:space-y-3 pt-1.5 sm:pt-2.5 border-t ${
+                    <div className={`space-y-1 pt-1 border-t ${
                       theme === 'dark' ? 'border-stone-800' : 'border-stone-150'
                     }`}>
                       {/* Dietary / Feature bullet list */}
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-0.5">
                         {meal.features.slice(0, 2).map((feat, i) => (
                           <span 
                             key={i} 
-                            className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-medium ${
+                            className={`text-[6.5px] sm:text-[7.5px] px-1 py-0.5 rounded font-medium ${
                               theme === 'dark'
                                 ? 'bg-stone-900/60 border border-stone-800/85 text-stone-300'
                                 : 'bg-emerald-50 border border-emerald-100/80 text-emerald-800'
@@ -402,7 +402,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                       <button
                         id={`add-to-quote-btn-${meal.id}`}
                         onClick={() => onAddFoodToQuote(meal)}
-                        className={`w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 px-1.5 sm:px-3 rounded-lg text-[9px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer ${
+                        className={`w-full flex items-center justify-center gap-0.5 py-1 px-1 rounded text-[7.5px] sm:text-[9px] font-bold tracking-wider uppercase transition-all cursor-pointer ${
                           countInCart > 0
                             ? theme === 'dark'
                               ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40'
@@ -412,7 +412,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                               : 'bg-stone-100 hover:bg-emerald-700 hover:text-white border border-stone-200 hover:border-emerald-600 text-stone-700'
                         }`}
                       >
-                        <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
+                        <Plus className="w-1.5 h-1.5 sm:w-2 sm:h-2 shrink-0" />
                         <span className="truncate">Add to Quote {countInCart > 0 && `(${countInCart})`}</span>
                       </button>
                     </div>
@@ -446,7 +446,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
               <div 
                 key={testi.id}
                 id={`testimonial-card-${testi.id}`}
-                className={`p-4 sm:p-6 md:p-8 rounded-2xl border transition-all flex flex-col justify-between space-y-3.5 sm:space-y-6 ${
+                className={`p-4 sm:p-5 rounded-xl border transition-all flex flex-col justify-between space-y-3 sm:space-y-4 ${
                   theme === 'dark'
                     ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
                     : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
