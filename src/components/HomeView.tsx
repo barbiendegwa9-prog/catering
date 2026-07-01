@@ -219,7 +219,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                 <div 
                   key={item.id}
                   id={`why-card-${idx}`}
-                  className={`p-6 sm:p-8 rounded-2xl space-y-4 border transition-all group hover:shadow-lg ${
+                  className={`p-4 sm:p-6 md:p-8 rounded-2xl space-y-3 sm:space-y-4 border transition-all group hover:shadow-lg ${
                     theme === 'dark'
                       ? 'bg-stone-950/80 border-stone-800 hover:border-emerald-500/30'
                       : 'bg-white border-stone-200 hover:border-emerald-500/30 shadow-sm'
@@ -325,7 +325,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                   }`}
                 >
                   {/* Photo Staging */}
-                  <div className="relative h-28 sm:h-44 md:h-48 overflow-hidden bg-stone-900">
+                  <div className="relative h-24 sm:h-40 md:h-48 overflow-hidden bg-stone-900">
                     <img
                       src={meal.imageUrl}
                       alt={meal.name}
@@ -365,7 +365,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                   </div>
 
                   {/* Core Attributes */}
-                  <div className="p-2.5 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                  <div className="p-2 sm:p-4 md:p-5 flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-3">
                     <div className="space-y-1">
                       <h3 className={`font-serif text-xs sm:text-base font-bold group-hover:text-emerald-500 transition-colors line-clamp-1 sm:line-clamp-none ${
                         theme === 'dark' ? 'text-stone-100' : 'text-stone-900'
@@ -389,8 +389,8 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                             key={i} 
                             className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-medium ${
                               theme === 'dark'
-                                ? 'bg-stone-900 border border-stone-800 text-stone-300'
-                                : 'bg-stone-100 border border-stone-200 text-stone-700'
+                                ? 'bg-stone-900/60 border border-stone-800/85 text-stone-300'
+                                : 'bg-emerald-50 border border-emerald-100/80 text-emerald-800'
                             }`}
                           >
                             {feat}
@@ -404,7 +404,9 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
                         onClick={() => onAddFoodToQuote(meal)}
                         className={`w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 px-1.5 sm:px-3 rounded-lg text-[9px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer ${
                           countInCart > 0
-                            ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40'
+                            ? theme === 'dark'
+                              ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40'
+                              : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             : theme === 'dark'
                               ? 'bg-stone-900 hover:bg-emerald-700 hover:text-white border border-stone-800 hover:border-emerald-600 text-stone-300'
                               : 'bg-stone-100 hover:bg-emerald-700 hover:text-white border border-stone-200 hover:border-emerald-600 text-stone-700'
@@ -444,7 +446,7 @@ export default function HomeView({ onOrderNow, onAddFoodToQuote, selectedItemsCo
               <div 
                 key={testi.id}
                 id={`testimonial-card-${testi.id}`}
-                className={`p-6 sm:p-8 rounded-2xl border transition-all flex flex-col justify-between space-y-4 sm:space-y-6 ${
+                className={`p-4 sm:p-6 md:p-8 rounded-2xl border transition-all flex flex-col justify-between space-y-3.5 sm:space-y-6 ${
                   theme === 'dark'
                     ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20 shadow-md'
                     : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'

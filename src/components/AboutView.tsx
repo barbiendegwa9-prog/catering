@@ -36,7 +36,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
         {/* Story Illustration Grid */}
         <div className="relative order-last lg:order-first">
           {/* Main Visual */}
-          <div className={`aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border ${
+          <div className={`aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border ${
             theme === 'dark' ? 'bg-stone-900 border-stone-800' : 'bg-white border-stone-200'
           }`}>
             <img 
@@ -90,7 +90,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
       <section id="vision-mission-section" className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-6">
         
         {/* VISION CARD */}
-        <div id="vision-card" className={`p-8 sm:p-10 rounded-3xl shadow-md border flex flex-col justify-between space-y-8 relative overflow-hidden group ${
+        <div id="vision-card" className={`p-4 sm:p-6 md:p-8 rounded-2xl shadow-md border flex flex-col justify-between space-y-6 relative overflow-hidden group ${
           theme === 'dark'
             ? 'bg-stone-950 text-white border-stone-800'
             : 'bg-white text-stone-900 border-stone-200'
@@ -121,7 +121,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
         </div>
 
         {/* MISSION CARD */}
-        <div id="mission-card" className={`p-8 sm:p-10 rounded-3xl shadow-md border flex flex-col justify-between space-y-8 group ${
+        <div id="mission-card" className={`p-4 sm:p-6 md:p-8 rounded-2xl shadow-md border flex flex-col justify-between space-y-6 group ${
           theme === 'dark'
             ? 'bg-[#131517] border-stone-800/80 text-white'
             : 'bg-white border-stone-200 text-stone-900'
@@ -173,7 +173,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {/* Chef 1 */}
-          <div id="chef-card-1" className={`p-6 rounded-2xl text-center space-y-4 border transition-all ${
+          <div id="chef-card-1" className={`p-4 sm:p-6 rounded-2xl text-center space-y-3.5 border transition-all ${
             theme === 'dark'
               ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20'
               : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
@@ -196,7 +196,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
           </div>
 
           {/* Chef 2 */}
-          <div id="chef-card-2" className={`p-6 rounded-2xl text-center space-y-4 border transition-all ${
+          <div id="chef-card-2" className={`p-4 sm:p-6 rounded-2xl text-center space-y-3.5 border transition-all ${
             theme === 'dark'
               ? 'bg-[#131517] border-stone-800/80 hover:border-emerald-500/20'
               : 'bg-white border-stone-200 hover:border-emerald-500/20 shadow-sm'
@@ -221,7 +221,7 @@ export default function AboutView({ onOpenBooking, theme = 'dark' }: AboutViewPr
       </section>
 
       {/* Inline CTA block */}
-      <section id="about-cta-block" className="bg-emerald-900/80 border border-emerald-800/50 p-8 sm:p-12 rounded-3xl text-center text-white space-y-6 max-w-4xl mx-auto shadow-xl">
+      <section id="about-cta-block" className="bg-emerald-900/80 border border-emerald-800/50 p-6 sm:p-12 rounded-2xl sm:rounded-3xl text-center text-white space-y-6 max-w-4xl mx-auto shadow-xl">
         <h2 className="font-serif text-2xl sm:text-3.5xl font-bold tracking-tight">
           Ready to Host a Happy Belly Dining Experience?
         </h2>

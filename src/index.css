@@ -34,17 +34,15 @@
   background-color: #faf8f5 !important;
 }
 
-/* Footer & Card Background overrides */
-.theme-light footer,
-.theme-light footer#footer-section,
-.theme-light .bg-stone-900,
-.theme-light .bg-stone-900\/60,
-.theme-light .bg-stone-900\/80,
-.theme-light .bg-stone-900\/40,
-.theme-light .bg-stone-900\/95,
-.theme-light .bg-[#131517],
-.theme-light .bg-stone-950\/60,
-.theme-light .bg-stone-950\/40 {
+/* Card Background overrides - excluding footer to keep it elegant and high-contrast dark */
+.theme-light :not(footer) .bg-stone-900,
+.theme-light :not(footer) .bg-stone-900\/60,
+.theme-light :not(footer) .bg-stone-900\/80,
+.theme-light :not(footer) .bg-stone-900\/40,
+.theme-light :not(footer) .bg-stone-900\/95,
+.theme-light :not(footer) .bg-\[\#131517\],
+.theme-light :not(footer) .bg-stone-950\/60,
+.theme-light :not(footer) .bg-stone-950\/40 {
   background-color: #f4f2eb !important;
   border-color: rgba(120, 110, 100, 0.2) !important;
 }
@@ -54,47 +52,46 @@
 }
 
 /* Border overrides */
-.theme-light .border-stone-800,
-.theme-light .border-stone-850,
-.theme-light .border-stone-900,
-.theme-light .border-stone-900\/60,
-.theme-light .border-stone-800\/40,
-.theme-light .border-stone-800\/50,
-.theme-light .border-stone-800\/60,
-.theme-light .border-stone-800\/80 {
+.theme-light :not(footer) .border-stone-800,
+.theme-light :not(footer) .border-stone-850,
+.theme-light :not(footer) .border-stone-900,
+.theme-light :not(footer) .border-stone-900\/60,
+.theme-light :not(footer) .border-stone-800\/40,
+.theme-light :not(footer) .border-stone-800\/50,
+.theme-light :not(footer) .border-stone-800\/60,
+.theme-light :not(footer) .border-stone-800\/80 {
   border-color: rgba(120, 110, 100, 0.22) !important;
 }
 
-/* Text overrides */
-.theme-light .text-stone-100,
-.theme-light .text-white,
-.theme-light h1,
-.theme-light h2,
-.theme-light h3,
-.theme-light h4 {
+/* Text overrides - keeping footer text and specific white buttons readable */
+.theme-light :not(footer) .text-stone-100,
+.theme-light h1:not(#hero-headline),
+.theme-light h2:not(#hero-headline),
+.theme-light h3:not(#hero-headline),
+.theme-light h4:not(#hero-headline) {
   color: #1a1816 !important;
 }
 
-.theme-light .text-stone-300 {
+.theme-light :not(footer) .text-stone-300 {
   color: #383530 !important;
 }
 
-.theme-light .text-stone-400,
-.theme-light .text-stone-450 {
+.theme-light :not(footer) .text-stone-400,
+.theme-light :not(footer) .text-stone-450 {
   color: #605c56 !important;
 }
 
-.theme-light .text-stone-500 {
+.theme-light :not(footer) .text-stone-500 {
   color: #807b73 !important;
 }
 
 /* Primary emerald text switches to a deeper elegant forest emerald for readability scale */
-.theme-light .text-emerald-400,
-.theme-light .text-emerald-500 {
+.theme-light :not(footer) .text-emerald-400,
+.theme-light :not(footer) .text-emerald-500 {
   color: #0d9488 !important; /* ocean-emerald dark contrast */
 }
 
-.theme-light .text-emerald-300 {
+.theme-light :not(footer) .text-emerald-300 {
   color: #065f46 !important;
 }
 
@@ -121,7 +118,7 @@
 }
 
 /* Staging Hours or Code highlights */
-.theme-light .font-mono {
+.theme-light .code-highlight {
   background-color: rgba(120, 110, 100, 0.08) !important;
   color: #272522 !important;
   padding-left: 0.25rem;
@@ -130,10 +127,14 @@
 }
 
 /* Exclude hero banner image brightness and text formatting */
-.theme-light #hero-section h1,
-.theme-light #hero-section h1 span {
-  /* Let text gradient background remain clean or white */
+.theme-light #hero-section h1 {
+  color: #ffffff !important;
 }
+
+.theme-light #hero-section h1 span {
+  color: transparent !important;
+}
+
 .theme-light #hero-section p {
   color: #faf8f5 !important; /* Keep hero subtitle perfectly readable over dark backdrop */
 }
